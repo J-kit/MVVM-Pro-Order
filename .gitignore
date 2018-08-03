@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs/MvvmJonasTest/v15/Server/sqlite3
+/.vs
+/MvvmJonasTest/bin/Debug
+/MvvmJonasTest/bin/Release
+/MvvmJonasTest/obj
+/packages/Ninject.3.3.4
