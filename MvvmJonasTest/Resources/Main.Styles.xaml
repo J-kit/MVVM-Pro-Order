@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mvvmJonasTest="clr-namespace:MvvmJonasTest">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Main.Base.xaml" />
@@ -42,14 +43,16 @@
         <Setter Property="Foreground"
                 Value="{StaticResource BrushBlue}" />
 
-        <Setter Property="Height" Value="23" />
+        <Setter Property="Height"
+                Value="23" />
 
         <Style.Triggers>
 
             <DataTrigger Binding="{Binding SelectedUser.CurrentOrder.Price}"
                          Value="0">
 
-                <Setter Property="Foreground" Value="{StaticResource BrushRed}" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource BrushRed}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -83,4 +86,41 @@
         <Setter Property="Margin"
                 Value="20" />
     </Style>
+
+    <DataTemplate x:Key="Userverwaltung">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="209*" />
+                <ColumnDefinition Width="209*" />
+                <ColumnDefinition Width="209*" />
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.Column="0"
+                     ItemsSource="{Binding Users, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedUser}"
+                     Style="{StaticResource ListboxUser}" />
+
+            <ListBox Grid.Column="1"
+                     ItemsSource="{Binding SelectedUser.Orders, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedUser.CurrentOrder}"
+                     Style="{StaticResource ListboxProduct}" />
+
+            <StackPanel Grid.Column="2">
+                <TextBox Text="{Binding SelectedUser.CurrentOrder.ProductName, Mode=OneWay}"
+                         Style="{StaticResource TextboxMainWindowBase}"
+                         Height= "23" />
+
+                <TextBox Text="{Binding SelectedUser.CurrentOrder.Anmerkungen}"
+                         Style="{StaticResource TextboxMainWindowBase}"
+                         Height= "200" />
+
+                <TextBox Text="{Binding SelectedUser.CurrentOrder.Price, StringFormat={}{0} €}"
+                         Style="{StaticResource TextboxPrice}" />
+
+                <Button Content="Do Something"
+                        Style="{StaticResource ButtonDoSomething}"
+                        Command="{Binding DoSomethingCommand}" />
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

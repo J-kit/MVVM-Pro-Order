@@ -2,11 +2,9 @@
 
 namespace MvvmJonasTest.Models
 {
-    public class OrderModel
+    public class OrderModel : ModelBase
     {
-
-        public Guid Id { get; set; }
-        public string ProductName { get; set; }
+        public DateTime OrderDate { get; set; }
         public double Price { get; set; }
         public string Anmerkungen { get; set; }
     }

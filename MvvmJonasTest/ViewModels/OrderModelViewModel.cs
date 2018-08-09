@@ -12,7 +12,7 @@ namespace MvvmJonasTest.ViewModels
         }
 
 
-        public string ProductName => _model.ProductName;
+        public string ProductName => _model.Name;
 
         public double Price
         {
