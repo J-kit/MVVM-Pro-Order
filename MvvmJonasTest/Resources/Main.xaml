@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MvvmJonasTest.Resources">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Main.Styles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

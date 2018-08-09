@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InspiringMvvmContrib</name>
+    </assembly>
+    <members>
+        <member name="T:Inspiring.Mvvm.Check">
+            <summary>
+              Provides static methods for parameter checks (similar to code contracts).
+            </summary>
+            <remarks>
+              Use 'nameof' operator for 'parameterName' parameters!
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotNull(System.Object,System.String)">
+            <summary>
+              Verifies that the supplied value is not a null reference.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is null.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotNull``1(System.Object,System.String)">
+            <summary>
+              Verifies that the supplied value is not a null reference.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="message">Optional: The error message that explains the reason for the exception.</param>
+            <typeparam name="TException">The type of the exception that will be thrown.</typeparam>
+            <remarks>
+              Can be used to check something that isn't an argument (e.g. with <see cref="T:System.InvalidOperationException"/>).
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotEmpty(System.String,System.String)">
+            <summary>
+              Verifies that the supplied string value is neither a null reference nor an empty string.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is null or an empty string.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+              Verifies that the supplied enumerable is neither a null reference nor empty.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is null or an empty enumerable.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotDefault``1(``0,System.String)">
+            <summary>
+              Verifies that the supplied value is not the default value of the type <typeparamref name="T"/>.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> equals the default value of <typeparamref name="T"/>.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.Requires(System.Boolean,System.String,System.String)">
+            <summary>
+              Verifies that the supplied boolean value is true.
+            </summary>
+            <param name="condition">The condition to verify.</param>
+            <param name="message">Optional: The error message that explains the reason for the exception.</param>
+            <param name="parameterName">Optional: The name of the parameter that caused the current exception. Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="condition"/> is false.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.Requires``1(System.Boolean,System.String)">
+            <summary>
+              Verifies that the supplied boolean value is true.
+            </summary>
+            <param name="condition">The condition to verify.</param>
+            <param name="message">Optional: The error message that explains the reason for the exception.</param>
+            <typeparam name="TException">The type of exception that is thrown.</typeparam>
+            <remarks>
+              Can be used to check something that isn't an argument (e.g. with <see cref="T:System.InvalidOperationException"/>).
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.BreakIfDebugging">
+            <summary>
+              Breaks execution if a debugger is attached. Only compiled in debug builds.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ExceptionTexts">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.EnumLocalizationNotFound">
+            <summary>
+              Looks up a localized string similar to No localization was found for the enum value &apos;{0}.{1}&apos;. Add an entry with a key of &apos;{0}_{1}&apos; and the localized display value to a resource file (.resx) and call &apos;EnumLocalized.AddLocalizationResource&apos; passing the &apos;ResourceManager&apos; of the resource file (which you can get using &apos;&lt;resource file name&gt;.ResourceManager&apos;)..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ExecuteCalledWithoutActualCommand">
+            <summary>
+              Looks up a localized string similar to &apos;Execute&apos; cannot be called if no actual command implementation is registered. Make sure you call &apos;Execute&apos; only if &apos;CanExecute&apos; returns true..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.LookupViewModelNotFound">
+            <summary>
+              Looks up a localized string similar to The lookup collection does not contain a VM for the source item: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.NoValue">
+            <summary>
+              Looks up a localized string similar to No value..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.SourceItemNotContainedByAllSourceItems">
+            <summary>
+              Looks up a localized string similar to The source item to set have to be contained by all source items..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.TypeNotEnum">
+            <summary>
+              Looks up a localized string similar to T must be an enumeration..
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Resources.Localized">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.MultiSelectionCompositeValidationError">
+            <summary>
+              Looks up a localized string similar to Validation errors:.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.MultiSelectionCompositeValidationErrorPropertyLine">
+            <summary>
+              Looks up a localized string similar to   {0}: {1}.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.MultiSelectionCompositeValidationErrorSeparator">
+            <summary>
+              Looks up a localized string similar to  .
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.MultiSelectionCompositeValidationErrorViewModelLine">
+            <summary>
+              Looks up a localized string similar to   {0}.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.SelectedItemsNotInSourceItems">
+            <summary>
+              Looks up a localized string similar to The selected item does not exist..
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Screens.ApplicationCommandManager">
+            <summary>
+              A service that provides view models and screens a way to register and 
+              unregister context-sensitive application commands identified by a key.
+              The 'Commands[commandKey]' property returns a proxy command for every
+              'commandKey' that is passed independent of whether an actual command
+              (one implemented by a view model or screen) is currently registered or
+              not. A proxy command is only created once for each 'commandKey'. This
+              means that the same proxy command instance is returned for every call
+              with the same 'commandKey' which does not depend on actual command
+              registrations.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Screens.CommandProxy">
+            <summary>
+              A proxy to a real ICommand.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.SettableListDisplayValueBehavior`1">
+            <summary>
+              An alternative implementation of the standard display value accessor 
+              behavior that enables that any <see cref="T:System.Collections.Generic.IEnumerable`1"/> can be
+              assigned to the display value of a VM collection property.
+            </summary>
+            <typeparam name="TItemVM"></typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SettableListDisplayValueBehavior`1.GetDisplayValue(Inspiring.Mvvm.ViewModels.Core.IBehaviorContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SettableListDisplayValueBehavior`1.SetDisplayValue(Inspiring.Mvvm.ViewModels.Core.IBehaviorContext,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SettableListDisplayValueBehavior`1.SynchronizeCollections(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0})">
+            <summary>
+              Ensures that the <paramref name="targetCollection"/> has the same
+              elements in the same sequence as the <paramref name="sourceCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.MultiSelectionBuilder`2.#ctor(Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder{`0},System.Func{Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder{`0},Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{System.Collections.Generic.ICollection{`1}}})">
+            <param name="sourceObjectPropertyBuilder">
+              The original <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/> that was extended by
+              with the extension method.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.MultiSelectionBuilder`2.Of``1(System.Action{Inspiring.Mvvm.ViewModels.MultiSelectionDescriptorBuilder{`0,`1,``0}},System.Boolean)">
+            <param name="isSelectedRaisesPropertyChanged">
+              'True' to raise PropertyChanged events for the <see cref="P:Inspiring.Mvvm.ViewModels.SelectableItemVM`2.IsSelected"/>
+              property, 'false' to suppress them.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.MultiSelectionBuilder`2.CreateLocatingPropertyFactory">
+            <summary>
+              If no source for 'AllItems' was specified, all items are by default 
+              resolved by asking the <see cref="T:Inspiring.Mvvm.IServiceLocator"/> of the source
+              object for an <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.MultiSelectionWithSourceVM`3.SourceObject">
+            <summary>
+              Gets the object that holds the source items. This references the
+              view model that holds the <see cref="T:Inspiring.Mvvm.ViewModels.MultiSelectionWithSourceVM`3"/> (the parent
+              VM is simply forwarded with this property).
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.MultiSelectionWithSourceVM`3.InitializeFrom(`0)">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.MultiSelectionWithSourceVM`2.Source">
+            <summary>
+              Gets the object that holds the source items. This references the
+              view model that holds the <see cref="T:Inspiring.Mvvm.ViewModels.MultiSelectionWithSourceVM`2"/> (the parent
+              VM is simply forwarded with this property).
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.MultiSelectionWithSourceVM`2.InitializeFrom(`0)">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.ReverseOneToManyCollection`2">
+            <summary>
+              Simulates a one-to-many relation between B and A if there is only a
+              one-to-many relation between A and B.
+            </summary>
+            <typeparam name="TSource">
+              The source object from which the reverse one-to-many relation should
+              originate (B in the above example).
+            </typeparam>
+            <typeparam name="TTarget">
+              The target object that should be referenced by the reverse one-to-many
+              relation (A in the above example).
+            </typeparam>
+            <remarks>
+              <para>This class implements <see cref="T:System.Collections.Generic.IList`1"/>. It initially contains all 
+                 target objects, that reference the source object of this reverse one-to-many
+                 collection (see constructor).</para>
+              <para>If a target object is added to this collection, the source object is 
+                added to the back reference collection of the added target item.</para>
+              <para>If a target object is remove from this collection, the source object is
+                 removed from the back reference collection of the added target item.</para>
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.ReverseOneToManyCollection`2.#ctor(`0,System.Collections.Generic.IEnumerable{`1},System.Func{`1,System.Collections.Generic.ICollection{`0}})">
+            <summary>
+              This collection contains all target objects, whose one-to-many reference
+              to its source objects (selected with the <paramref name="backReferenceSelector"/>)
+              contains the give <paramref name="sourceObject"/>.
+            </summary>
+            <param name="sourceObject">
+              The "one" side of the reverse one-to-many collection.
+            </param>
+            <param name="possibleTargetObjects">
+              All possible objects that may be referenced by the reverse one-to-many
+              side (the "many" side of the reverse one-to-many collection).
+            </param>
+            <param name="backReferenceSelector">
+              A delegate that returns a list of source objects referenced by a possible
+              target object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.ReverseOneToManyCollection`2.InsertItem(System.Int32,`1)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.ReverseOneToManyCollection`2.RemoveItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.ReverseOneToManyCollection`2.ClearItems">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.ReverseOneToManyCollection`2.SetItem(System.Int32,`1)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SingleSelectionBuilder`2.#ctor(Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder{`0},System.Func{Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder{`0},Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{`1}})">
+            <param name="sourceObjectPropertyBuilder">
+              The original <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/> that was extended by
+              with the extension method.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SingleSelectionBuilder`2.CreateLocatingPropertyFactory">
+            <summary>
+              If no source for 'AllItems' was specified, all items are by default 
+              resolved by asking the <see cref="T:Inspiring.Mvvm.IServiceLocator"/> of the source
+              object for an <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.SingleSelectionWithSourceVM`3.SourceObject">
+            <summary>
+              Gets the object that holds the source items. This references the
+              view model that holds the <see cref="T:Inspiring.Mvvm.ViewModels.SingleSelectionWithSourceVM`3"/> (the parent
+              VM is simply forwarded with this property).
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SingleSelectionWithSourceVM`3.InitializeFrom(`0)">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.SingleSelectionWithSourceVM`2.Source">
+            <summary>
+              Gets the object that holds the source items. This references the
+              view model that holds the <see cref="T:Inspiring.Mvvm.ViewModels.SingleSelectionWithSourceVM`2"/> (the parent
+              VM is simply forwarded with this property).
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.SingleSelectionWithSourceVM`2.InitializeFrom(`0)">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.Views.CustomKeyGesture">
+            <summary>
+              A factory for enhanced <see cref="T:System.Windows.Input.KeyGesture"/>s that do not validate
+              its modifiers/key and that allow easy localization.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.CustomKeyGesture.Create(System.Windows.Input.Key,System.Windows.Input.ModifierKeys)">
+            <summary>
+              Returns a new <see cref="T:System.Windows.Input.KeyGesture"/> for the given <paramref
+              name="key"/> and <paramref name="modifiers"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.CustomKeyGesture.SupplyLocalization(System.Resources.ResourceManager)">
+            <summary>
+              Allows the localization of <see cref="P:System.Windows.Input.KeyGesture.DisplayString"/> of 
+              key gestures created by <see cref="M:Inspiring.Mvvm.Views.CustomKeyGesture.Create(System.Windows.Input.Key,System.Windows.Input.ModifierKeys)"/>.
+            </summary>
+            <param name="resourceFile">
+              A <see cref="T:System.Resources.ResourceManager"/> (for example 'Localized.ResourceManager')
+              that may contain the following keys: "KeySeparator" which is used to
+              join the modifies/keys ("+" by default), an entry of the form
+              "ModifierKeys_EnumMember" to localize modifier keys and "Key_EnumMember"
+              to localize keys. If a resource key is not found, the WPF default
+              texts are used.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.Views.CustomKeyGestureExtension">
+            <summary>
+              A <see cref="T:System.Windows.Markup.MarkupExtension"/> that creates improved <see 
+              cref="T:System.Windows.Input.KeyGesture"/>s using <see cref="M:Inspiring.Mvvm.Views.CustomKeyGesture.Create(System.Windows.Input.Key,System.Windows.Input.ModifierKeys)"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,2805 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InspiringMvvm</name>
+    </assembly>
+    <members>
+        <member name="T:Inspiring.Mvvm.Check">
+            <summary>
+              Provides static methods for parameter checks (similar to code contracts).
+            </summary>
+            <remarks>
+              Use 'nameof' operator for 'parameterName' parameters!
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotNull(System.Object,System.String)">
+            <summary>
+              Verifies that the supplied value is not a null reference.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is null.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotNull``1(System.Object,System.String)">
+            <summary>
+              Verifies that the supplied value is not a null reference.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="message">Optional: The error message that explains the reason for the exception.</param>
+            <typeparam name="TException">The type of the exception that will be thrown.</typeparam>
+            <remarks>
+              Can be used to check something that isn't an argument (e.g. with <see cref="T:System.InvalidOperationException"/>).
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotEmpty(System.String,System.String)">
+            <summary>
+              Verifies that the supplied string value is neither a null reference nor an empty string.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is null or an empty string.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+              Verifies that the supplied enumerable is neither a null reference nor empty.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is null or an empty enumerable.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.NotDefault``1(``0,System.String)">
+            <summary>
+              Verifies that the supplied value is not the default value of the type <typeparamref name="T"/>.
+            </summary>
+            <param name="value">The value to verify.</param>
+            <param name="parameterName">Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> equals the default value of <typeparamref name="T"/>.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.Requires(System.Boolean,System.String,System.String)">
+            <summary>
+              Verifies that the supplied boolean value is true.
+            </summary>
+            <param name="condition">The condition to verify.</param>
+            <param name="message">Optional: The error message that explains the reason for the exception.</param>
+            <param name="parameterName">Optional: The name of the parameter that caused the current exception. Use 'nameof' operator!</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="condition"/> is false.</exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.Requires``1(System.Boolean,System.String)">
+            <summary>
+              Verifies that the supplied boolean value is true.
+            </summary>
+            <param name="condition">The condition to verify.</param>
+            <param name="message">Optional: The error message that explains the reason for the exception.</param>
+            <typeparam name="TException">The type of exception that is thrown.</typeparam>
+            <remarks>
+              Can be used to check something that isn't an argument (e.g. with <see cref="T:System.InvalidOperationException"/>).
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Check.BreakIfDebugging">
+            <summary>
+              Breaks execution if a debugger is attached. Only compiled in debug builds.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.ECommon">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.ECommon.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.ECommon.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.ECommon.BehaviorForKeyCannotBeCreated">
+            <summary>
+              Looks up a localized string similar to This factory cannot create behaviors for key &apos;{0}&apos;. Make sure that you have registered a concrete behavior type for the request key at this factory. If you have extended a &apos;BehaviorChainTemplate&apos; make sure you have provided a custom &apos;IBehaviorFactoryProvider&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.ECommon.WrongBehaviorFactoryProviderType">
+            <summary>
+              Looks up a localized string similar to The &apos;factoryProvider&apos; has the wrong type. Make sure you pass in an provider derived from &apos;{0}&apos;. Passed provider was of type &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.HierarchicalEventBase`2">
+            <remarks>
+              Derive from this class, if you want to write your own extension methods for
+              registering events or if you do not want to provide convenient registration
+              methods at all. Derive from <see cref="T:Inspiring.Mvvm.Common.HierarchicalEvent`2"/>
+              otherwise.
+            </remarks>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.IEventSubscription.Event">
+            <summary>
+              The event for which this subscription listens. Null if the subscription
+              does not listen for a specific event.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.HashCodeService">
+            <summary>
+              Helper class for implementing <see cref="M:System.Object.GetHashCode"/> in a 
+              consistent and optimal way.
+            </summary>
+            <remarks>
+              The method is based on code from Sharp-Architecture.
+            </remarks>
+        </member>
+        <member name="F:Inspiring.Mvvm.Common.HashCodeService.HashMultiplier">
+            <summary>
+              To improve the uniqueness of hash codes, a multiplier is used. According 
+              to the book 'Data Structures and Algorithms in Java' from Michael T. Goodrich 
+              and Roberto Tamassia, 31, 33, 37, 39 and 41 give the least number of duplicate
+              values. More information can be found here:
+              http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.HashCodeService.CalculateHashCode(System.Object,System.Object[])">
+            <summary>
+              Calculates the hash code of the object 'obj' using its 'propertyValues'.
+            </summary>
+            <param name="obj">
+              The object for which the hash code should be calculated.
+            </param>
+            <param name="propertyValues">
+              <para>The value of the properties which should influence the hash code.
+                 These should be the same property values that are compared in the 
+                 <see cref="M:System.Object.Equals(System.Object)"/> method.</para>
+              <para>If one of your properties is a collection and you want to base
+                 the hash code on all items of the collection, you can pass the 
+                 result of <see cref="M:Inspiring.Mvvm.Common.HashCodeService.CalculateCollectionHashCode(System.Collections.IEnumerable)"/> as one of the
+                 property values.</para>
+             </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.HashCodeService.CalculateCollectionHashCode(System.Collections.IEnumerable)">
+            <summary>
+              Calculates the hash code of a collection. The resulting hash code is
+              based solely on the hash codes of its items. The type of the collection
+              does not matter.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.EnqueueMessage``1(``0)">
+            <summary>
+              Queues a message which can later be sent using <see cref="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.DispatchMessages(Inspiring.Mvvm.Common.DispatchTarget)"/>.
+            </summary>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+              <typeparamref name="TMessage"/> is not serializable.
+            </exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.AddMessageReceiver``1(System.Action{``0})">
+            <summary>
+              Adds a handler action that is executed everytime a message of type
+              <typeparamref name="TMessage"/> is received.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.StartListening">
+            <summary>
+              Starts listening for message sent by other processes with the same
+              shared identifier.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.StopListening">
+            <summary>
+              Stops listening for messages sent by other processes.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.DispatchMessages(Inspiring.Mvvm.Common.DispatchTarget)">
+            <summary>
+              Tries to send all queued messages to the passed in target processes.
+              Query <see cref="P:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.HasUndispatchedMessages"/> to determine if all messages
+              could be been dispatched successfully.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.Core.AbstractInterprocessMessenger.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.InterprocessLock">
+            <summary>
+              Similar to a C# lock statement but works across processes.
+            </summary>
+            <example>
+              <code>
+                 <![CDATA[using(new InterprocessLock("ExampleAppStartupSection", 10 * 1000) {
+                    // Code whose execution should be serialized
+                 }]]>
+              </code>
+            </example>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.InterprocessLock.Dispose">
+            <summary>
+              Releases the lock. This method must be called from the same thread
+              that created this object.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.SealableObject">
+            <summary>
+              A base class for objects that may be sealed. Once an object is sealed 
+              it is immutable and cannot be modified.
+            </summary>
+            <remarks>
+              Call <see cref="M:Inspiring.Mvvm.Common.SealableObject.Seal"/> in every method that should seal the object 
+              and call <see cref="M:Inspiring.Mvvm.Common.SealableObject.RequireNotSealed"/> in every method that modifies
+              the state of the object.
+            </remarks>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.SealableObject.IsSealed">
+            <summary>
+              Gets whether the object is sealed. Once an object is sealed it is
+              immutable and cannot be modified.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.SealableObject.Seal">
+            <summary>
+              Seals the object. Once an object is sealed it is immutable and cannot
+              be modified.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.SealableObject.RequireNotSealed">
+            <summary>
+              Throws an <see cref="T:System.InvalidOperationException"/> if the object is
+              sealed.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.WeakCollection`1">
+            <summary>
+              A collection of weak references to objects of type <typeparamref name="T"/>. 
+              If an item is not referenced somewhere else anymore, it is available for 
+              garbage collection and is removed from this collection as soon as it is
+              collected.
+            </summary>
+            <remarks>
+              More info can be found on the following sites:
+                 http://connectedproperties.codeplex.com/SourceControl/changeset/view/d75e91b4b73e
+                 http://www.codeproject.com/KB/cs/WeakReferencesGCHandles.aspx
+                 http://nitoprograms.blogspot.com/2009/07/nitoweakreference-and.html
+            </remarks>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.WeakCollection`1.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.WeakCollection`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.Add(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.Clear">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.Remove(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.GetEnumerator">
+            <summary>
+              Enumerates all alive items.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.System#Collections#Generic#ICollection{T}#Contains(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.System#Collections#Generic#ICollection{T}#CopyTo(`0[],System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.WeakCollection`1.Purge">
+            <remarks>
+              <para>This implementation uses logic similar to <see cref="M:System.Collections.Generic.List`1.RemoveAll(System.Predicate{`0})"/>, which 
+                 always has O(n) time. If we would simply call Remove in a loop, the running 
+                 time would approach O(n^2) if most items die (mass distinction).</para>
+              <para>Note that we can not easily use <see cref="M:System.Collections.Generic.List`1.RemoveAll(System.Predicate{`0})"/> because
+                 we have to do the check, wheter an item is still alive only once in total.
+                 This condition is needed to dertmine (1) if the item should be removed and
+                 (2) if the corresponding handle should be freed. Doing the check twice may
+                 lead to an inconsistent state or memory leaks because the object may die
+                 between the two checks.</para>   
+            </remarks>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.IHideObjectMembers">
+            <summary> 
+              Helper interface used to hide the base <see cref="T:System.Object"/> members from 
+              your classes to make intellisense much cleaner. Note: This ONLY works from
+              other assemblies AND you MUST NOT have the project using this interface in 
+              your solution (else VS will still show them). 
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.PropertyPath">
+            <summary>
+            An object that gets or sets the value of a property or multi-step property
+            path ('Address.City') of an object.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Create``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+              Creates a new 'PropertyPath' that throws a 'NullReferenceException'
+              when 'GetValue' or 'SetValue' is called and one of the property path 
+              steps (except the last) return null. To create a 'PropertyPath' for 
+              the 'Address.City' property of the 'Person' class call 
+              '<![CDATA[Create<Person, string>(p => p.Address.City)]]>'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.CreateWithDefaultValue``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+            <summary>
+              Creates a new 'PropertyPath' that returns the given 'defaultValue'
+              when 'GetValue' is called and one of the property path steps (except 
+              the last) returns null. Calls to 'SetValue' do nothinng in this case.
+              To create a 'PropertyPath' for the 'Address.City' property of the 
+              'Person' class call  '<![CDATA[
+                 CreateWithDefaultValue<Person, string>(p => p.Address.City, "Unknown")
+              ]]>'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Concat``3(Inspiring.Mvvm.Common.PropertyPath{``0,``1},Inspiring.Mvvm.Common.PropertyPath{``1,``2})">
+            <summary>
+              Combines to PropertyPath objects into one object. Calling 'Conact' for
+              '[Person].Address' and '[Address].City.PostalCode' returns the path
+              '[Person].Address.City.PostalCode'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Empty``1">
+            <summary>
+              Creates an empty property path which simple return the source value when
+              'GetValue' is called and throws an expcetion when 'SetValue' is called. 
+              This construct is useful when concating paths.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.PropertyPath.Step">
+            <summary>
+              A representation of single step of a 'PropertyPath' like 'Address' or
+              'City' in '[Person].Address.City'. Provides two delegates to get and 
+              set the property it represents.
+            </summary>
+            <remarks>
+              This class has to be in the non-generic PropertyPath class to implement
+              to 'Conact' function.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Step.CreateAccessor(System.Reflection.PropertyInfo)">
+            <summary>
+              Calls generic 'CreateWeakPropertyAccessor' method with the correct 
+              type arguments.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Step.CreateMutator(System.Reflection.PropertyInfo)">
+            <summary>
+              Calls generic 'CreateWeakPropertyMutator' method with the correct 
+              type arguments.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Step.CreateWeakPropertyAccessor``2(System.Reflection.PropertyInfo)">
+            <summary>
+              Returns a delegate that casts its first argument to 'TObject' and
+              returns the value of the passed 'property' on this object. 'TProperty'
+              is the type of the property.
+            </summary>
+            <remarks>
+              This methods creates a delegate that directly calls the getter method 
+              of the property (without reflection) which is ways faster than using
+              'PropertyInfo.GetValue'. For this to work it is required that we know
+              the type of the object and property at compile time because (1) the
+              the delegate must be strongly typed and (2) therefore also must be
+              called in a strongly typed fashion (Delegate.InvokeInvoke would be
+              slow).
+              
+              Unfortunately we don't know these two types at compile time. To work
+              arround this, we call this method using Reflection and fill in the
+              two generic type parameters at runtime.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath.Step.CreateWeakPropertyMutator``2(System.Reflection.PropertyInfo)">
+            <summary>
+              Returns a delegate that casts its first argument to 'TObject' and its
+              second to 'TProperty' and sets the value of the passed 'property' on
+              the object in the first argument to the value in the second argument.
+            </summary>
+            <remarks>
+              See 'CreateWeakPropertyAccessor'.
+            </remarks>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.PropertyPath`2">
+            <summary>
+            An object that gets or sets the value of a property or multi-step property
+            path ('Address.City') of an object.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.#ctor(System.Reflection.PropertyInfo[],System.Boolean,`1)">
+            <summary>
+              Use 'PropertyPath.Create' to create a new property path!  
+            </summary>
+            <param propertyName="properties">
+              Pass the 'PropertyInfo' for each single step of the property path. 
+              For [Person].Address.City pass the 'PropertyInfo' for 'Address' and
+              for 'City'.
+            </param>
+            <param propertyName="useDefaultValue">
+              If true and one of the property steps returns null, the specified
+              'defaultValue' is returned by the 'GetValue' method and 'SetValue'
+              operations are ignored. If false, an exception is thrown in this 
+              case.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.#ctor(Inspiring.Mvvm.Common.PropertyPath.Step[],System.Boolean,`1)">
+            <summary>
+            Used by the 'Concat' method.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Common.PropertyPath`2.IsEmpty">
+            <summary>
+              Returns true if the property path does not contain any property access
+              like in 'p => p'. An empty property path simple returns the source value
+              when 'GetValue' is called and throws an expcetion when 'SetValue' is 
+              called. This construct is useful when concating paths.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.ReturnDefaultIfNull(`1)">
+            <summary>
+              Returns a new <see cref="T:Inspiring.Mvvm.Common.PropertyPath"/> that returns the passed default
+              value whenever one of its steps returns null.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.GetValue(`0)">
+            <summary>
+              Gets the value of the property path by sequentially getting the value
+              of all property steps. Pass in the object for which the value of the 
+              property path should be returned.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.SetValue(`0,`1)">
+            <summary>
+              Sets the value of the property path. This involves sequentially getting
+              the value of all property steps but the last and actually setting the 
+              value on the last step. Pass in the object for which the value of the 
+              property path should be set.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.Concat``3(Inspiring.Mvvm.Common.PropertyPath{``0,``1},Inspiring.Mvvm.Common.PropertyPath{``1,``2})">
+            <summary>
+            See 'PropertyPath.Concat'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.GetPrefixValue(System.Object)">
+            <summary>
+            The 'prefix' includes all steps of the property path except the last.
+            So for '[Person].Address.City.PostalCode' this method would return the
+            value of 'Address.City'. For single step properties it just returnd
+            'source'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.PropertyPath`2.GetFormattedPropertyPath(System.Type,System.Collections.Generic.IEnumerable{Inspiring.Mvvm.Common.PropertyPath.Step})">
+            <summary>
+              Returns a string like "[Person].Address.City" where [Person] is the
+              class on which 'Address' is declared (or a subtype from it).
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Common.ExpressionService">
+            <summary>
+            Provides services for parsing expression trees.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.ExpressionService.GetProperties``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+              Converts an expression tree of the form 'x => x.Address.City' to 
+              a PropertyInfo list of the form { Address, City }.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.ExpressionService.GetPropertyPathString``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+              Converts an expression tree of the form 'x => x.Address.City' to 
+              string that contains the property names separated by dots (e.g.
+              'Address.City'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Common.ExpressionService.GetPropertyName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+              Gets the propertyName of a single property that is expressed like 'x => x.Address'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IPathDefinitionBuilder`1.Descendant``1(System.Func{`0,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.IViewModel{``0}}})">
+            <summary>
+            </summary>
+            <param name="viewModelSelector">
+              The given function should return a child VM property.
+            </param>
+            <typeparam name="D">
+              The descriptor type of the child VM. Can be inferred by the compiler.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IPathDefinitionBuilder`1.Descendant``1(System.Func{`0,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.Core.IVMCollectionExpression{Inspiring.Mvvm.ViewModels.IViewModelExpression{``0}}}})">
+            <summary>
+            </summary>
+            <param name="collectionSelector">
+              The given function should return a collection VM property.
+            </param>
+            <typeparam name="D">
+              The descriptor type of the collection VM. Can be inferred by the compiler.
+            </typeparam>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactoryProvider`1.Custom">
+            <summary>
+              Provides an API to create properties with custom behaviors. This API
+              is indended for very ADVANCED scenarios and should ONLY be used if you
+              cannot implement your requirements with the standard API or you are
+              extending the framework.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.CachingValidationResultAggregatorBehavior">
+            <summary>
+              Notes: Currently not used. Does not work correctly if item is contained mulitple 
+              collections/child properties (see tests). If This really saves some performance,
+              one solution to fix this behavior is to change 'RemoveCachedResult' with the
+              following pseudo code:
+                 if (oldItem.Parents.CountOf(self) == 1) {
+                    RemoveCache();
+                 } else {
+                    // Ignore, because we still reference it.
+                 }
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.CachingValidationResultAggregatorBehavior.ChildResultCollection">
+            <summary>
+              A cache that holds all invalid direct children of the corrent VM and
+              manages them performantly.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IDependencySourceBuilder`4.Properties(System.Func{`3,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor}[])">
+            <summary>
+              Selects one or more properties for attaching a change action.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IDependencySourceBuilder`4.Descendant``1(System.Func{`3,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.IViewModel{``0}}})">
+            <summary>
+              Selects a child VM to specifiy which change of one or more of its properties or any descandants
+              is of interest
+              Calls may be chained to select any descendant VM.
+            </summary>
+            <param name="viewModelSelector">
+              The given function should return a child VM property.
+            </param>
+            <typeparam name="D">
+              The descriptor type of the child VM. Can be inferred by the compiler.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IDependencySourceBuilder`4.Descendant``1(System.Func{`3,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.Core.IVMCollectionExpression{Inspiring.Mvvm.ViewModels.IViewModelExpression{``0}}}})">
+            <summary>
+              Selects a collection VM to specifiy which change of one or more of its properties or any descandants
+              is of interest.
+              Calls may be chained to select any descendant VM.
+            </summary>
+            <param name="collectionSelector">
+              The given function should return a collection VM property.
+            </param>
+            <typeparam name="D">
+              The descriptor type of the collection VM. Can be inferred by the compiler.
+            </typeparam>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ICollectionChangeHandlerBehavior`1">
+            <summary>
+              A collection behavior whose methods are called by the <see cref="T:Inspiring.Mvvm.ViewModels.VMCollection`1"/>
+              if it is modified in some way. Implement this interface if you want to do
+              something when items are inserted, removed or replaced.
+            </summary>
+            <remarks>
+              Note that all the behavior method are called after their causing VM collection
+              methods. This is because some behaviors require that the collection was already
+              modified when the behavior methods are called. For example a validation behavior
+              may invoke validations which access the current state of the collection.
+            </remarks>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1">
+            <summary>
+            A behavior that intercepts or implements the strongly typed get/set
+            operation of a property.
+            </summary>
+            <typeparam propertyName="TValue">The type of the property target.</typeparam>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IPropertyRevalidationBehavior">
+            <summary>
+              A property behavior that can revalidate its property.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration">
+            <summary>
+              Holds the transient configuration of the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IBehavior"/> objects
+              the will finally consitute a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> and provides
+              methods to manipulate the behavior objects.
+            </summary>
+            <remarks>
+              In contrast to a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/> which is the same
+              for all <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> instances of certain type, a 
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> is always bound to a single
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> instance. Once the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/>
+              is created the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> is not needed
+              anymore and should be discarded.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)">
+            <summary>
+              Makes sure that the behavior defined by '<paramref name="key"/>' gets
+              included in the behavior chain returned by <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.CreateChain"/>.
+            </summary>
+            <param name="behaviorInstance">
+              Specifies or overrides the default behavior instance provided by the
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/>. This parameter is required if
+              the template has defined the behavior with the <see 
+              cref="F:Inspiring.Mvvm.ViewModels.Core.DefaultBehaviorState.DisabledWithoutFactory"/> option.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Disable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey)">
+            <summary>
+              Removes the behavior defined by '<paramref name="key"/>' from the behavior
+              chain returned by <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.CreateChain"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.ConfigureBehavior``1(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,System.Action{``0})">
+            <summary>
+              Calls the '<paramref name="configurationAction"/>' with the behavior
+              specified by '<paramref name="key"/>' that will be inserted in the 
+              behavior chain. This method implicitly calls <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)"/>.
+            </summary>
+            <typeparam name="T">
+              The type of the behavior to configure. This may be the concrete type
+              of the behavior or a base type/interface.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Append(Inspiring.Mvvm.ViewModels.Core.BehaviorKey)">
+            <summary>
+              Adds a disabled behavior configuration to the end of the chain.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Append(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)">
+            <summary>
+              Adds a disabled behavior configuration to the end of the chain.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Prepend(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)">
+            <summary>
+              Adds a disabled behavior configuration to the top of the chain.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.CreateChain">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> with <see cref="T:Inspiring.Mvvm.ViewModels.Core.IBehavior"/>s
+              as configured by this object.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection">
+            <summary>
+              Holds the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> for all VM properties
+              of a VM descriptor.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection.Item(Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor)">
+            <summary>
+              Gets the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> for the given 
+              <paramref name="forProperty"/>.
+            </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+              The collection does not contain a configuration for the given property.
+              Make sure <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection.RegisterProperty``1(Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``0},Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration)"/> was called.
+            </exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection.RegisterProperty``1(Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``0},Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration)">
+            <summary>
+              Registers a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> for a certain
+              <paramref name="property"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection.ConfigureBehavior``1(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,System.Action{``0})">
+            <summary>
+              Calls <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.ConfigureBehavior``1(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,System.Action{``0})"/> on
+              all configurations contained by this collection that contain the 
+              specified '<paramref name="key"/>'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection.Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey)">
+            <summary>
+              Calls <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)"/> on
+              all configurations contained by this collection that contain the 
+              specified '<paramref name="key"/>'.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfigurationCollection.ApplyToProperties(Inspiring.Mvvm.ViewModels.IVMDescriptor)">
+            <summary>
+              Creates concrete <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> objects for each registered
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> and assigns it to the <see 
+              cref="P:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor.Behaviors"/> property of the <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/>
+              object for which the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> was
+              registered.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate">
+            <summary>
+              A template that defines the ordering of <see cref="T:Inspiring.Mvvm.ViewModels.Core.IBehavior"/> objects
+              in a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/>. It also defines how the behavior are
+              created and whether the are enabled by default.
+            </summary>
+            <remarks>
+              A template does not create a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> directly. Create
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> by calling <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate.CreateConfiguration(Inspiring.Mvvm.ViewModels.Core.IBehaviorFactoryConfiguration)"/> first to create a concrete chain.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate.Append(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.DefaultBehaviorState)">
+            <summary>
+              Returns a new <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/> with a behavior
+              chain item template added to the end of the item template list of 
+              this behavior chain template.
+            </summary>
+            <param name="state">
+              If 'Disabled', the behavior is not enabled in a <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> 
+              created from this template. This means it will not be included in the finally 
+              created <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/> unless <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration.Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)"/>
+              is called.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate.OverrideFactoryProvider(Inspiring.Mvvm.ViewModels.Core.IBehaviorFactoryProvider)">
+            <summary>
+              Returns a new <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/> with the same
+              behavior chain item templates but with a different <see 
+              cref="T:Inspiring.Mvvm.ViewModels.Core.IBehaviorFactoryProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate.CreateConfiguration(Inspiring.Mvvm.ViewModels.Core.IBehaviorFactoryConfiguration)">
+            <summary>
+              Creates a new <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> from this
+              template.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateRegistry">
+            <summary>
+              A registry that holds all available <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/> 
+              objects.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateRegistry.RegisterTemplate(Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateKey,Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate)">
+            <summary>
+              Registers or overrides the given <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateKey"/>
+              with the given <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateRegistry.GetTemplate(Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateKey)">
+            <summary>
+              Returns a template previously register with <see cref="M:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateRegistry.RegisterTemplate(Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplateKey,Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate)"/>.
+            </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+              No template with the given <paramref name="key"/> was registered.
+            </exception>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.InitializableBehavior.IsInitialized">
+            <summary>
+              Gets whether the behavior was already initialized. If a behavior does
+              not require initialization this property has no meaning.
+            </summary>
+            <remarks>
+              The concrete form of initialization is specific to the behavior. Call
+              <see cref="M:Inspiring.Mvvm.ViewModels.Core.InitializableBehavior.SetInitialized"/> when you have initialized your behavior
+              and call <see cref="M:Inspiring.Mvvm.ViewModels.Core.InitializableBehavior.RequireInitialized"/> before every non-initialization
+              method of your behavior.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.InitializableBehavior.SetInitialized">
+            <summary>
+              Marks the behavior as initialized.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.InitializableBehavior.RequireInitialized">
+            <summary>
+              Throws an exception if the behavior is not initialized.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelCommand.#ctor(Inspiring.Mvvm.ViewModels.IViewModel,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor)">
+            <param name="ownerVM">
+              The view model instance to which this command instance belongs. The
+              VM must be known by the command because a command always related to
+              a certain VM (the execute action/can execute result is different for
+              every VM).
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.CountingSet`1">
+            <summary>
+              Counts the Add operations per item. The item is removed only when the count
+              of the Remove operations matches the count of the Add operations.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.CachedAccessorBehavior`1.UpdateCache(Inspiring.Mvvm.ViewModels.Core.IBehaviorContext,`0)">
+            <summary>
+              Updates the cached value without call SetValue on the behavior
+              chain.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ViewModelPropertyDescriptor">
+            <summary>
+              A <see cref="T:System.ComponentModel.PropertyDescriptor"/> that allows
+              the WPF binding infrastructure to bind to VM properties even if no CLR
+              wrapper is defined on the ViewModel class.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.InitialPseudoAction">
+            <summary>
+              This action is the very first action on the undo stack.  When the user
+              requests a rollback point, the top most action on the undo stack is returned.
+              Its possible that a rollback point is requested before modifications are made.
+              In this case this action is returned.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.UndoManager.TopMostAction">
+            <summary>
+             Returns an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IUndoableAction"/> at the top of the undo stack without removing it.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.UndoManager.GetManager(Inspiring.Mvvm.ViewModels.IViewModel)">
+            <summary>
+              Returns the <see cref="T:Inspiring.Mvvm.ViewModels.Core.UndoManager"/> defined in the view model or
+              nearest ancestor hierachy. 
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+              More than one <see cref="T:Inspiring.Mvvm.ViewModels.Core.UndoManager"/> is defined in the same ancestor level.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+              Undo is enabled but no <see cref="T:Inspiring.Mvvm.ViewModels.Core.UndoManager"/> is defined in the view model hierarchy.
+            </exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.UndoManager.GetRollbackPoint">
+            <summary>
+             Returns an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IRollbackPoint"/> at the top of the undo stack without removing it.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.UndoManager.RollbackTo(Inspiring.Mvvm.ViewModels.Core.IRollbackPoint)">
+            <summary>
+               Removes and executes an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IUndoableAction"/> beginning from the top of undo stack
+               till the rollback point is reached.
+            </summary>
+            <exception cref="T:System.ArgumentException">
+              Undo stack doesn't contain <see cref="T:Inspiring.Mvvm.ViewModels.Core.IRollbackPoint"/>. 
+            </exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.UndoManager.PushAction(Inspiring.Mvvm.ViewModels.Core.IUndoableAction)">
+            <summary>
+              Inserts an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IUndoableAction"/> at the top of the undo stack.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ValidationArgs">
+            <summary>
+              Holds all infos necessary for a <see cref="P:Inspiring.Mvvm.ViewModels.Core.ValidationArgs.Validator"/> to validate a
+              property or VM. It also holds the validation state (such as the 
+              validation errors that occur).
+            </summary>
+            <remarks>
+              TODO: Update documentation!
+              <para>The <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationArgs"/> are initially created by the
+                 'PropertyValidationBehavior' or the
+                 'ViewModelValidationBehavior' which both react to certain 
+                 changes.</para>
+              <para>The 'ViewModelValidationBehavior' of each VM in the 
+                 hierarchy creates a new <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationArgs"/> object passing
+                 in the path to the VM that has changed. For this instance the
+                 'OwnerVM' and the 'TargetVM' are both set the VM
+                 of the behavior. The behavor then calls all its validators that are 
+                 defined for the given 'TargetVM' passing in the
+                 'ValidationArgs' object.</para>
+              <para>After that, the <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationArgs"/> objects is passed 
+                 to the parent of the VM. The parent calls 'PrependTargetPath'
+                 to set the 'OwnerVM' to itself. The
+                 'ViewModelValidationBehavior' then calls all its validators 
+                 that it has defined for the 'TargetVM' of the new 
+                 <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationArgs"/>. The <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationArgs"/> are
+                 then passed to the grand parent and the process repeats.</para>
+               <para>Note that each VM in the hierarchy reacts to changes and each
+                 ancestor of a changing VM invokes the "bubbling" process described
+                 above.</para>
+               <para>The same process applies to property validations.</para>
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactory`1.Property``1(Inspiring.Mvvm.ViewModels.Core.IBehavior,System.Action{Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration})">
+            <summary>
+            
+            </summary>
+            <param name="valueAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactory`1.PropertyWithSource``1(Inspiring.Mvvm.ViewModels.Core.IBehavior,System.Action{Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration})">
+            <summary>
+            
+            </summary>
+            <param name="valueAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactory`1.ViewModelProperty``1(Inspiring.Mvvm.ViewModels.Core.IBehavior,Inspiring.Mvvm.ViewModels.Core.IBehavior,System.Action{Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration})">
+            <summary>
+            
+            </summary>
+            <param name="valueAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactory`1.ViewModelPropertyWithSource``2(Inspiring.Mvvm.ViewModels.Core.IBehavior,Inspiring.Mvvm.ViewModels.Core.IBehavior,System.Action{Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration})">
+            <summary>
+            
+            </summary>
+            <param name="valueAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> object.
+            </param>
+            <param name="sourceAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactory`1.CollectionProperty``1(Inspiring.Mvvm.ViewModels.IVMDescriptor,Inspiring.Mvvm.ViewModels.Core.IBehavior,Inspiring.Mvvm.ViewModels.Core.IBehavior,System.Action{Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration})">
+            <summary>
+            
+            </summary>
+            <param name="valueAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> (T is <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection`1"/>) object.
+            </param>
+            <param name="sourceAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> (T is <see cref="T:System.Collections.Generic.IEnumerable`1"/>) object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICustomPropertyFactory`1.CollectionPropertyWithSource``2(Inspiring.Mvvm.ViewModels.IVMDescriptor,Inspiring.Mvvm.ViewModels.Core.IBehavior,Inspiring.Mvvm.ViewModels.Core.IBehavior,System.Action{Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration})">
+            <summary>
+            
+            </summary>
+            <param name="valueAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> (T is <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection`1"/>) object.
+            </param>
+            <param name="sourceAccessor">
+              Usually an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValueAccessorBehavior`1"/> (T is <see cref="T:System.Collections.Generic.IEnumerable`1"/>) object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilderOperation.EnableValidationExecutorBehavior">
+            <summary>
+              Note: We have to enable the validation executor behavior even if we have NO
+              validators defined on a VM because otherwise validation requests would not
+              be forwarded to potential parents!
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.CollectionValidatorBuilder`2.Custom(System.Action{Inspiring.Mvvm.ViewModels.Core.CollectionValidationArgs{`0,`1}})">
+            <summary>
+              Defines a custom validator that is executed after an an item of the
+              selected collection has changed.
+            </summary>
+            <remarks>
+              The validator is also executed when a revalidation is performed, the 
+              VM is added to/removed from a collection or any descendant VM has
+              changed (a property or its validation state).
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.CollectionValidatorBuilder`3.Custom``1(System.Action{Inspiring.Mvvm.ViewModels.Core.CollectionValidationArgs{`0,``0,`2}})">
+            <summary>
+              Defines a custom validator that is executed when the selected property
+              is about to change on any item of the selected collection.
+            </summary>
+            <remarks>
+              The validator is also executed when a revalidation is performed, or
+              the VM is added to/removed from a collection.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.PropertyValidatorBuilder`3.Custom(System.Action{Inspiring.Mvvm.ViewModels.Core.PropertyValidationArgs{`0,`1,`2}})">
+            <summary>
+              Defines a custom validator that is executed every time the selected
+              property is about to change.
+            </summary>
+            <remarks>
+              The validator is also executed when a revalidation is performed, or
+              the VM is added to/removed from a collection.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.PropertyValidatorBuilder`3.Custom(Inspiring.Mvvm.ViewModels.Core.IValidator)">
+            <summary>
+              Defines a custom validator that is executed every time the selected
+              property is about to change.
+            </summary>
+            <remarks>
+              The validator is also executed when a revalidation is performed, or
+              the VM is added to/removed from a collection.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.RootValidatorBuilder`3.EnableParentValidation``1(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``0}})">
+            <summary>
+              Allows ancestor VMs to define property validators for this VM.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.RootValidatorBuilder`3.EnableParentViewModelValidation">
+            <summary>
+              Allows ancestor VMs to define view model-level validators for this VM.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.CheckViewModel(System.Action{Inspiring.Mvvm.ViewModels.Core.ViewModelValidationArgs{`0,`1}})">
+            <summary>
+              Defines a custom validator that is executed every time the VM or 
+              any descendant VM has changed.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.Check``1(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``0}})">
+            <summary>
+              Selects the VM property for which a validator should be defined.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.CheckCollection``1(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.Core.IVMCollectionExpression{``0}}})">
+            <summary>
+              Selects the VM collection for which a validator should be defined.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.CheckCollection``2(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.Core.IVMCollectionExpression{Inspiring.Mvvm.ViewModels.IViewModelExpression{``0}}}},System.Func{``0,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``1}})">
+            <summary>
+              Selects the VM collection for which a validator should be defined.
+            </summary>
+            <param name="itemPropertySelector">
+              <para>The given function should return a VM property of a collection 
+                 item.</para>
+              <para>This overrload is used to validate a single property of the
+                 items of a collection (for example that the 'Name' property of 
+                 the collection is unique).</para>
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.ValidateDescendant``1(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.IViewModel{``0}}})">
+            <summary>
+              Selects the child VM for which a validator should be defined.
+              Calls may be chained to select any descendant VM.
+            </summary>
+            <param name="propertySelector">
+              The given function should return a child VM property.
+            </param>
+            <typeparam name="C">
+              The descriptor type of the child VM. Can be inferred by the compiler.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.ValidateDescendant``1(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{Inspiring.Mvvm.ViewModels.Core.IVMCollectionExpression{Inspiring.Mvvm.ViewModels.IViewModelExpression{``0}}}})">
+            <summary>
+              Selects the child VM for which a validator should be defined.
+              Calls may be chained to select any descendant VM.
+            </summary>
+            <param name="propertySelector">
+              The given function should return a collection VM property.
+            </param>
+            <typeparam name="C">
+              The descriptor type of the child VM. Can be inferred by the compiler.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder`3.PathSelectsDescendant(Inspiring.Mvvm.ViewModels.Core.PathDefinition)">
+            <summary>
+              If a descendant is validated, it has to enable the appropriate behaviors 
+              itself, because we can only modify our own descriptor (the user has to 
+              call <see cref="M:Inspiring.Mvvm.ViewModels.Core.RootValidatorBuilder`3.EnableParentValidation``1(System.Func{`2,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``0}})"/> manually). 
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.VMDescriptorConfiguration">
+            <summary>
+              Holds transient information about the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/>s
+              of a VM descriptor and its properties.
+            </summary>
+            <remarks>
+              Once the actual <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/>s are created an object of this
+              class is not needed anymore.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorConfiguration.ApplyTo(Inspiring.Mvvm.ViewModels.IVMDescriptor)">
+            <summary>
+              Creates concrete <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChain"/>s from the <see 
+              cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/>s and assigns them to the <paramref 
+              name="descriptor"/> and its VM properties.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilder">
+            <summary>
+              An interface that enables a non-generic <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/>
+              to hold a generic <see cref="T:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2"/>.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ISinglePropertyBehaviorBuilder`3">
+            <summary>
+              Implements a fluent interface to configure property behaviors. Returned
+              by <see cref="T:Inspiring.Mvvm.ViewModels.Core.VMBehaviorBuilder`2"/>
+            </summary>
+            <typeparam name="TVM"></typeparam>
+            <typeparam name="TDescriptor"></typeparam>
+            <typeparam name="TValue">
+              The type of the property (such as String or EmployeeVM).
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ISinglePropertyBehaviorBuilder`3.Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)">
+            <summary>
+              Enables the behavior with the given key.
+            </summary>
+            <param name="behaviorInstance">
+              Specifies or overrides the default behavior instance provided by the
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainTemplate"/>. This parameter is required if
+              the template has defined the behavior with the <see 
+              cref="F:Inspiring.Mvvm.ViewModels.Core.DefaultBehaviorState.DisabledWithoutFactory"/> option.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ISinglePropertyBehaviorBuilder`3.Configure``1(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,System.Action{``0})">
+            <summary>
+              Calls the '<paramref name="configurationAction"/>' with the behavior
+              specified by '<paramref name="key"/>' and enables it.
+            </summary>
+            <typeparam name="TBehavior">
+              The type of the behavior to configure. This may be the concrete type
+              of the behavior or a base type/interface.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ISinglePropertyBehaviorBuilder`3.AddChangeHandler(System.Action{`0,Inspiring.Mvvm.ViewModels.Core.ChangeArgs})">
+            <summary>
+             Warning: This will change soon.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ISinglePropertyBehaviorBuilder`3.RequiresLoadedProperty(System.Func{`1,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor},System.Boolean)">
+            <param name="requireLoaded">Pass false to remove the depedency.</param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMBehaviorBuilder`2">
+            <summary>
+              Implements a fluent interface to configure property behaviors.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMBehaviorBuilder`2.Property``1(System.Func{`1,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor{``0}})">
+            <summary>
+              Configures the <see cref="T:Inspiring.Mvvm.ViewModels.Core.BehaviorChainConfiguration"/> of a single
+              property.
+            </summary>
+            <param name="propertySelector">
+              Selects the property which should be configured.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.VMBehaviorBuilder`2.SinglePropertyBehaviorBuilder`1">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMBehaviorBuilder`2.SinglePropertyBehaviorBuilder`1.Inspiring#Mvvm#ViewModels#Core#ISinglePropertyBehaviorBuilder{TVM,TDescriptor,TValue}#Enable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,Inspiring.Mvvm.ViewModels.Core.IBehavior)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMBehaviorBuilder`2.SinglePropertyBehaviorBuilder`1.Inspiring#Mvvm#ViewModels#Core#ISinglePropertyBehaviorBuilder{TVM,TDescriptor,TValue}#Disable(Inspiring.Mvvm.ViewModels.Core.BehaviorKey)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMBehaviorBuilder`2.SinglePropertyBehaviorBuilder`1.Inspiring#Mvvm#ViewModels#Core#ISinglePropertyBehaviorBuilder{TVM,TDescriptor,TValue}#Configure``1(Inspiring.Mvvm.ViewModels.Core.BehaviorKey,System.Action{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMBehaviorBuilder`2.SinglePropertyBehaviorBuilder`1.Inspiring#Mvvm#ViewModels#Core#ISinglePropertyBehaviorBuilder{TVM,TDescriptor,TValue}#AddChangeHandler(System.Action{`0,Inspiring.Mvvm.ViewModels.Core.ChangeArgs})">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilder`2">
+            <summary>
+              Fluent interface. See <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilder`2.WithProperties(System.Action{`0,Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider{`1}})">
+            <summary>
+              Configures or overrides the VM properties and their mappings (required).
+            </summary>
+            <param name="propertyConfigurator">
+              A delegate that should assign <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> instances to
+              all properties of the <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/> passed to the 
+              delegate (or override some of them). Use the passed in <see 
+              cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1"/> to get a <see 
+              cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/> with which <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/>
+              objects can be created and configured.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilderWithProperties`2">
+            <summary>
+              Fluent interface. See <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilderWithProperties`2.WithDependencies(System.Action{Inspiring.Mvvm.ViewModels.Core.IVMDependencyBuilder{`1,`0}})">
+            <summary>
+              Configures dependencies between properties to allow correct change
+              notification (optional).
+            </summary>
+            <param name="dependencyConfigurator">
+              A delegate that should use the passed in <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMDependencyBuilder`2"/>
+              to setup dependencies between VM properties.
+            </param>
+            <remarks>
+              <para>A property 'A' depends on 'B' if a change of 'B' also results 
+                 in a change of 'A'. Example: If 'Name' is calculated by 
+                 'FirstName + " "  + LastName' the property 'Name' depends on the 
+                 properties 'FirstName' and 'LastName'.</para>
+              <para>This feature allows us to avoid implementing <see 
+                 cref="T:System.ComponentModel.INotifyPropertyChanged"/> and <see cref="T:System.Collections.Specialized.INotifyCollectionChanged"/>
+                 in our domain models because the VM takes care of this concern.</para>
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilderWithProperties`2.WithValidators(System.Action{Inspiring.Mvvm.ViewModels.Core.RootValidatorBuilder{`1,`1,`0}})">
+            <summary>
+              Configures how the VM should be validated (optional).
+            </summary>
+            <param name="validatorConfigurator">
+              A delegate that should define validators using the <see 
+              cref="T:Inspiring.Mvvm.ViewModels.Core.RootValidatorBuilder`3"/> passed to the delegate.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilderWithProperties`2.WithBehaviors(System.Action{Inspiring.Mvvm.ViewModels.Core.IVMBehaviorBuilder{`1,`0}})">
+            <summary>
+              Configures additional "behaviors" that modify how the properties
+              of the view model behave (optional).
+            </summary>
+            <param name="behaviorConfigurator">
+              A delegate that should enable or configure behaviors using the
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMBehaviorBuilder`2"/> passed to the delegate.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilderWithProperties`2.WithViewModelBehaviors(System.Action{Inspiring.Mvvm.ViewModels.Core.ViewModelBehaviorBuilder{`1,`0}})">
+            <summary>
+              Configures additional "behaviors" that modify how the view model 
+              behaves (optional).
+            </summary>
+            <param name="behaviorConfigurator">
+              A delegate that should enable or configure behaviors using the
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.ViewModelBehaviorBuilder`2"/> passed to the delegate.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMDescriptorBuilderWithProperties`2.Build">
+            <summary>
+              Builds and returns the fully configured <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/>. 
+              Usually the returned descriptor is assigned to a public static 
+              readonly field (named ClassDescriptor) and passed to the constructor
+              of the <see cref="T:Inspiring.Mvvm.ViewModels.ViewModel"/> base class.
+            </summary>  
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IPopulatedCollectionPropertyBuilder`1">
+            <summary>
+              Provides a fluent interface to create collection <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor`1"/>
+              objects. This interface is returned by <see cref="T:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilder`1"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IPopulatedCollectionPropertyBuilder`1.With(Inspiring.Mvvm.ViewModels.IVMDescriptor)">
+            <summary>
+              Selects item descriptor and creates the property.
+            </summary>
+            <param name="itemDescriptor">
+              Specifies the VM descriptor that should be used for the collection 
+              items. All items must have the same descriptor.
+            </param>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Property">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.VM">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Collection">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Custom">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IValuePropertyBuilder{TSourceObject}#MapsTo``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IValuePropertyBuilder{TSourceObject}#DelegatesTo``1(System.Func{`1,``0},System.Action{`1,``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IValuePropertyBuilder{TSourceObject}#Of``1">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IViewModelPropertyBuilder{TSourceObject}#Wraps``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IViewModelPropertyBuilder{TSourceObject}#Wraps``1(System.Func{`1,``0},System.Action{`1,``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IViewModelPropertyBuilder{TSourceObject}#DelegatesTo``1(System.Func{`1,``0},System.Action{`1,``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#IViewModelPropertyBuilder{TSourceObject}#Of``1">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#ICollectionPropertyBuilder{TSourceObject}#Wraps``1(System.Func{`1,System.Collections.Generic.IEnumerable{``0}},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#ICollectionPropertyBuilder{TSourceObject}#PopulatedWith``1(System.Func{`1,System.Collections.Generic.IEnumerable{``0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Inspiring#Mvvm#ViewModels#Core#ICollectionPropertyBuilder{TSourceObject}#Of``1(Inspiring.Mvvm.ViewModels.IVMDescriptor)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMPropertyBuilder`2.Command(System.Action{`1},System.Func{`1,System.Boolean})">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ViewModelTypeDescriptionProvider">
+            <summary>
+              Returns a <see cref="T:Inspiring.Mvvm.ViewModels.Core.ViewModelTypeDescriptor"/> for the <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/>
+              defined by a static field marked with <see cref="T:Inspiring.Mvvm.ViewModels.ClassDescriptorAttribute"/>.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor">
+            <summary>
+              This class serves the internal infrastructure and should not be used.
+            </summary>
+            <remarks>
+              A view model base class that explicitly implements <see cref="T:System.ComponentModel.ICustomTypeDescriptor"/>
+              and fowards all methods to the <see cref="T:System.ComponentModel.TypeDescriptor"/> default implementation 
+              except <see cref="M:System.ComponentModel.ICustomTypeDescriptor.GetProperties"/> which is forwarded to
+              the abstract method <see cref="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.GetPropertyDescriptors"/>.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetProperties">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetProperties(System.Attribute[])">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetPropertyOwner(System.ComponentModel.PropertyDescriptor)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetAttributes">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetEvents">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetEvents(System.Attribute[])">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetDefaultProperty">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetDefaultEvent">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetClassName">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetComponentName">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetConverter">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.System#ComponentModel#ICustomTypeDescriptor#GetEditor(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ViewModelWithTypeDescriptor.GetPropertyDescriptors">
+            <summary>
+              Returns a <see cref="T:System.ComponentModel.PropertyDescriptorCollection"/> with property
+              descriptors for all VM properties defined by the VM descriptor of 
+              this view model. This method is called each time when <see 
+              cref="M:System.ComponentModel.ICustomTypeDescriptor.GetProperties"/> is called.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ChangeArgs">
+            <summary>
+              Holds information about a change event (property changed, validation state
+              changed) that occured for a VM.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IBehaviorInitializationBehavior">
+            <summary>
+              Implement this behavior if your property behavior needs to declare a 
+              dynamic field or needs to know its property. The values of dynamic 
+              fields are stored with each <see cref="T:Inspiring.Mvvm.ViewModels.ViewModel"/> instance.
+              The value of fields defined in this way can be accessed via the 
+              <see cref="P:Inspiring.Mvvm.ViewModels.Core.IBehaviorContext.FieldValues"/> property.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IBehaviorInitializationBehavior.Initialize(Inspiring.Mvvm.ViewModels.Core.BehaviorInitializationContext)">
+            <summary>
+              Initializes the property behavior.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ValidationError">
+            <summary>
+              A <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationError"/> is the result of a failed validation
+              performed by an <see cref="T:Inspiring.Mvvm.ViewModels.Core.IValidator"/>.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.ValidationError.Message">
+            <summary>
+              The error message that should be displayed to the user.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidationError.Equals(System.Object)">
+            <summary>
+              Two <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationError"/>s are equal if their <see cref="P:Inspiring.Mvvm.ViewModels.Core.ValidationError.Message"/>
+              is equal.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ServiceLocatorValueFactoryBehavior`1">
+            <summary>
+              Creates new instances of the type specified with <typeparamref 
+              name="TVM"/> using the <see cref="P:Inspiring.Mvvm.ViewModels.Core.IBehaviorContext.ServiceLocator"/> of the
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.IBehaviorContext"/>.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor">
+            <summary>
+              Simplifies the <see cref="T:System.ComponentModel.PropertyDescriptor"/> class by providing a
+              default implementation for irrelevant, abstract methods.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.#ctor(System.String,System.Type,System.Type)">
+            <param name="componentType">
+              The type on which the property is defined on. The 'component' parameter
+              is expected to be a subclass of this type.
+            </param>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.ComponentType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.PropertyType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.CanResetValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.ResetValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.SimplePropertyDescriptor.ShouldSerializeValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.TypeDescriptorProviderBehavior">
+            <summary>
+              A view model behavior that caches all <see cref="T:Inspiring.Mvvm.ViewModels.Core.ViewModelPropertyDescriptor"/> 
+              objects of a <see cref="T:Inspiring.Mvvm.ViewModels.IVMDescriptor"/> object.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ValidationResult">
+            <summary>
+              The validation state is the result of a validation. It holds all validation
+              errors and the overall result (valid/invalid). Each property and the view 
+              model have a validation state.
+            </summary>
+            <remarks>
+              The <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationResult"/> is an immutable data structure. You can 
+              use <see cref="M:Inspiring.Mvvm.ViewModels.Core.ValidationResult.Join(Inspiring.Mvvm.ViewModels.Core.ValidationResult,Inspiring.Mvvm.ViewModels.Core.ValidationResult)"/> to create states with more than one error.
+            </remarks>
+        </member>
+        <member name="F:Inspiring.Mvvm.ViewModels.Core.ValidationResult.Valid">
+            <summary>
+              A sharable, valid default instance.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.ValidationResult.Errors">
+            <summary>
+              Gets the validation errors that were added by the validators of the
+              property or view model.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.ValidationResult.IsValid">
+            <summary>
+              Returns true if all validators have succeeded.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidationResult.Join(System.Collections.Generic.IEnumerable{Inspiring.Mvvm.ViewModels.Core.ValidationResult})">
+            <summary>
+              Creates a new <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationResult"/> that contains the errors 
+              of all passed in states.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidationResult.Join(Inspiring.Mvvm.ViewModels.Core.ValidationResult,Inspiring.Mvvm.ViewModels.Core.ValidationResult)">
+            <summary>
+              Creates a new <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationResult"/> that contains the errors 
+              of the <paramref name="first"/> and <paramref name="second"/> state.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidationResult.Equals(System.Object)">
+            <summary>
+              Two <see cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationResult"/>s are equal, if their <see 
+              cref="T:Inspiring.Mvvm.ViewModels.Core.ValidationError"/>s are equal.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ValidationResult.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IBehaviorContext">
+            <summary>
+              Holds that state needed by operations of a <see cref="T:Inspiring.Mvvm.ViewModels.Core.Behavior"/>.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.DerivedVMDescriptorBuilder`1">
+            <summary>
+              Fluent interface. See <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.DerivedVMDescriptorBuilder`1.OfType``1">
+            <summary>
+              Selects the descriptor type that should be created.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`1">
+            <summary>
+              Fluent interface. See <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`1.For``1">
+            <summary>
+              <para>Specifies the <see cref="T:Inspiring.Mvvm.ViewModels.ViewModel"/> type for which this 
+                 descriptor should be build.</para>
+              <para>A <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/> instance is always build for one
+                 certain VM class and all instances of a VM usually have the same
+                 <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/> object. For example: All instances of
+                 the PersonVM CLASS are associated with the same PersonVMDescriptor
+                 INSTANCE.</para>
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2">
+            <summary>
+              Fluent interface. See <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder"/>.
+            </summary>
+            <remarks>
+              This is the class where the real building happens. The other builder
+              class merely collection generic arguments.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.WithProperties(System.Action{`0,Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider{`1}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.WithDependencies(System.Action{Inspiring.Mvvm.ViewModels.Core.IVMDependencyBuilder{`1,`0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.WithValidators(System.Action{Inspiring.Mvvm.ViewModels.Core.RootValidatorBuilder{`1,`1,`0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.WithBehaviors(System.Action{Inspiring.Mvvm.ViewModels.Core.IVMBehaviorBuilder{`1,`0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.WithViewModelBehaviors(System.Action{Inspiring.Mvvm.ViewModels.Core.ViewModelBehaviorBuilder{`1,`0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.Build">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.VMDescriptorBuilder`2.Inspiring#Mvvm#ViewModels#Core#IVMDescriptorBuilder#ConfigureDescriptor(Inspiring.Mvvm.ViewModels.VMDescriptor,Inspiring.Mvvm.ViewModels.Core.VMDescriptorConfiguration)">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilder`1">
+            <summary>
+              Provides a fluent interface to create collection <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/>
+              objects.
+            </summary>
+            <typeparam name="TSourceObject">
+              The type of source objects as selected by the <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call 
+              used to create the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/>.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilder`1.Wraps``1(System.Func{`0,System.Collections.Generic.IEnumerable{``0}},System.Boolean)">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> of type <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection"/>
+              whos items are synchronized with a source collection returned by the 
+              passed <paramref name="sourceCollectionSelector"/>.
+            </summary>
+            <param name="sourceCollectionSelector">
+              <para>A function that should return the source collection with which 
+                 the <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection"/> is synchronized. This may be the
+                 value of a source object collection or you may create and return
+                 a new collection instance.</para> 
+              <para>The <see cref="T:Inspiring.Mvvm.ViewModels.IViewModel"/> or some object referenced by it (as 
+                 defined by the GetFactory method) is passed to the delegate.</para>  
+            </param>
+            <param name="cacheSourceCollection">
+              <para>If false, the <paramref name="sourceCollectionSelector"/> is executed 
+                 for each collection operation (population, add, remove, ...). This is 
+                 appropriate if the source collection instance may be replaced behind the 
+                 scenes (e.g. when the collection is mapped with NHibernate).</para>
+              <para>If true, the <paramref name="sourceCollectionSelector"/> is only 
+                 executed when the collection is populated or refreshed. This is 
+                 appropriate if the source collection is constructed on the fly.</para>
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilder`1.PopulatedWith``1(System.Func{`0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> of type <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection"/>
+              that is initialized with the items returned by the passed <paramref 
+              name="itemsProvider"/>.
+            </summary>
+            <param name="itemsProvider">
+              A function that returns the contents of the VM collection. It is called
+              the first time the collection is accessed or when <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.VMKernel.UpdateFromSource"/> is called.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilder`1.Of``1(Inspiring.Mvvm.ViewModels.IVMDescriptor)">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> of type <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection"/>.
+            </summary>
+            <typeparam name="TItemVM">
+              The type of the collection item VM (for example PersonVM). A 
+              new instance of <typeparamref name="TItemVM"/> is created for each item 
+              of the source collection using the service locator of the parent VM,
+              InitializeFrom is called with the  source item and the item VM is added to the
+              collection.
+            </typeparam>
+            <param name="itemDescriptor">
+              Specifies the VM descriptor that should be used for the collection 
+              items. All items must have the same descriptor.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilderWithSource`1">
+            <summary>
+              Provides a fluent interface to create collection <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/>
+              objects. This interface is returned by <see cref="T:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilder`1"/>.
+            </summary>
+            <typeparam name="TItemSource">
+              The type of the source value from which a collection item VM is initialized.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.ICollectionPropertyBuilderWithSource`1.With``1(Inspiring.Mvvm.ViewModels.IVMDescriptor)">
+            <summary>
+              Selects the type of the collection item.
+            </summary>
+            <typeparam name="TItemVM">
+              The type of the collection item VM (for example PersonVM). A 
+              new instance of <typeparamref name="TItemVM"/> is created for each item 
+              of the source collection using the service locator of the parent VM,
+              InitializeFrom is called with the source item and the item VM is added to the
+              collection.
+            </typeparam>
+            <param name="itemDescriptor">
+              Specifies the VM descriptor that should be used for the collection 
+              items. All items must have the same descriptor.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1">
+            <summary>
+              Provides a fluent interface to create <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> objects.
+            </summary>
+            <typeparam name="TSourceObject">
+              The type of source objects as selected by the <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call 
+              used to create the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/>.
+            </typeparam>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1.Property">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that holds a simple value (an object,
+              string or value type).
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1.VM">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that holds a child view model and
+              ensures that the child VM is properly initialized (for example its
+              parent is set).
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1.Collection">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that holds a <see cref="T:Inspiring.Mvvm.ViewModels.IVMCollection"/>
+              of chlild view models and ensures that its item VMs are properly 
+              initialized (for example its parent is set).
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1.Command(System.Action{`0},System.Func{`0,System.Boolean})">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> of type <see cref="T:System.Windows.Input.ICommand"/>.
+            </summary>
+            <param name="executeAction">
+              A delegate that is called when the command is executed.
+            </param>
+            <param name="canExecutePredicate">
+              A delegate taht is called to check whether the command can currently
+              be executed.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`2">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IValuePropertyBuilder`1">
+            <summary>
+              Provides a fluent interface to create <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that 
+              hold simple values (objects, strings, value types).
+            </summary>
+            <typeparam name="TSourceObject">
+              The type of source objects as selected by the <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call 
+              used to create the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/>.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IValuePropertyBuilder`1.MapsTo``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that reads and sets the value of
+              standard property declared on the source object.
+            </summary>
+            <param name="sourcePropertySelector">
+              <para>An expression of the form 'x => x.Person.Age' that specifies 
+                 the path of the property whose value should be returned and set 
+                 by the returned property.</para>
+              <para>The first argument of the expression ('x' in the example) is
+                 the VM or some object referenced by it as selected by the 
+                 <see cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method
+                 call used to create the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/>.</para>
+            </param>
+            <remarks>
+              <para>Every time the VM property is accessed on a VM the getter of 
+                 the mapped property of the VMs source object is called. Every time 
+                 the VM property is set on a VM the setter of the mapped property 
+                 of the VMs source object is called.</para>
+              <para>A mapped property may also map to a complex property path of 
+                 the source object, such as Invoice.Customer.Address.Street. In 
+                 this case all properties are read in sequence and the value of 
+                 the last property is returned or set on the source object. The
+                 default value of <typeparamref name="T"/> is returned if one of
+                 properties in the path returns null.</para>
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IValuePropertyBuilder`1.DelegatesTo``1(System.Func{`0,``0},System.Action{`0,``0})">
+            <summary>
+              Creats a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that calls a delegate when the VM 
+              property is read or set.
+            </summary>
+            <param name="getter">
+              <para>A delegate that is called by the <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> to 
+                 get its value.</para>
+              <para>The VM or some object referenced by it (as defined by the <see
+                 cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call)
+                 is passed to the delegate.</para>
+              <para>Example: 'vm => vm.Person.CalculateFee(vm.CurrentProject)'.</para>
+            </param>
+            <param name="setter">
+              <para>A delegate that is called by the <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> when 
+                 its value is set.</para>
+              <para>The VM or some object referenced by it (as defined by the <see 
+                 cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call)
+                 and the new value is passed to the delegate.</para>
+              <para>Example: 
+                 '(vm, value) => vm.Person.UpdateFee(vm.CurrentProject, value)'.
+              </para>
+            </param>
+            <remarks>
+              If no setter is specified, the VM property is readonly and throws an
+              exception if its value is set.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IValuePropertyBuilder`1.Of``1">
+            <summary>
+              Creates a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that stores its value in the VM.
+              It is similar to a normal get/set property but enhanced with all VM 
+              property features.
+            </summary>
+            <typeparam name="T">
+              The type of the property (e.g. <see cref="T:System.String"/>).
+            </typeparam>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilder`1">
+            <summary>
+              Provides a fluent interface to create <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that 
+              hold child view models.
+            </summary>
+            <typeparam name="TSourceObject">
+              The type of source objects as selected by the <see 
+              cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call 
+              used to create the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/>.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilder`1.Wraps``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+              Selects the source value from which the child view model should be
+              initialized.
+            </summary>
+            <param name="sourceValueSelector">
+              <para>The property selected by this expression is read the first time 
+                 when the VM property is accessed. The returned value is used to 
+                 initialize the child view model that is held by this VM property.</para>
+              <para>If the VM property is set to a new view model its source object
+                 is assigned to the selected source property.</para>
+              <para>The first argument of the expression ('x' in the example) is
+                 the VM or some object referenced by it as selected by the 
+                 <see cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method
+                 call used to create the <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/>.</para>
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilder`1.Wraps``1(System.Func{`0,``0},System.Action{`0,``0})">
+            <summary>
+              Selects the source value from which the child view model should be
+              initialized.
+            </summary>
+            <param name="getter">
+              <para>A delegate that is called the first time the VM property is 
+                 accessed. The returned value is used to initialize the child view
+                 model that is held by this VM property.</para>
+              <para>The VM or some object referenced by it (as defined by the <see
+                 cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call)
+                 is passed to the delegate.</para>
+            </param>
+            <param name="setter">
+              <para>A delegate that is called when the VM property is set to a new 
+                 view model.</para>
+              <para>The VM or some object referenced by it (as defined by the <see
+                 cref="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder"/> method call)
+                 and the source object of the new VM is passed to the delegate.</para>
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilder`1.DelegatesTo``1(System.Func{`0,``0},System.Action{`0,``0})">
+            <summary>
+              Creates a simple <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that holds a child view 
+              model that can be get and set.
+            </summary>
+            <param name="getter">
+              A delegate that is called the first time the VM property is accessed 
+              and should return a new child VM instance.
+            </param>
+            <param name="setter">
+              A delegate that is called each time the property is set to a new VM
+              object.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilder`1.Of``1">
+            <summary>
+              Creates a simple <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> that holds a child view 
+              model that can be get and set.
+            </summary>
+            <typeparam name="TChildVM">
+              The type of the child VM (for example PersonVM).
+            </typeparam>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilderWithSource`1">
+            <summary>
+              Provides a fluent interface to create <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> objects.
+              This interface is returned by <see cref="T:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilder`1"/>.
+            </summary>
+            <typeparam name="TSourceValue">
+              The type of the source value from which the VM is initialized.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IViewModelPropertyBuilderWithSource`1.With``1">
+            <summary>
+              Selects the type of the child VM (for example PersonVM).
+            </summary>
+            <typeparam name="TChildVM">
+              A new instance of <typeparamref name="TChildVM"/> is created using 
+              the <see cref="T:Inspiring.Mvvm.IServiceLocator"/> of this VM.
+              InitializeFrom is called with the source object just selected.
+            </typeparam>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.Behavior.GetNextBehavior``1">
+            <summary>
+              Gets the next behavior in the stack and throws an 'ArgumentException'
+              if no behavior that implements 'TBehavior' can be found.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.Behavior.TryGetBehavior``1(``0@)">
+            <summary>
+              Tries to get the next behavior in the stack and returns whether a
+              behavior that implements 'TBehavior' was found.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.DelegateValueAccessor`3">
+            <summary>
+              A <see cref="T:Inspiring.Mvvm.ViewModels.Core.IDisplayValueAccessorBehavior"/> that uses the specified delegates
+              to implement get/set operation of a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/>.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.StoredValueAccessorBehavior`1">
+            <summary>
+              An <see cref="T:Inspiring.Mvvm.ViewModels.Core.IDisplayValueAccessorBehavior"/> that implements the get/set 
+              operation of a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> by using a dynamic field (see 
+              <see cref="T:Inspiring.Mvvm.ViewModels.Core.FieldDefinition`1"/>) as a backing store for the property target.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.MappedValueAccessorBehavior`2">
+            <summary>
+              A <see cref="T:Inspiring.Mvvm.ViewModels.Core.IDisplayValueAccessorBehavior"/> that implements the get/set 
+              operation of a <see cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> by using a CLR property defined 
+              on a the view model or an object referenced by it.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1">
+            <summary>
+              A provider that returns <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/> objects. Different
+              property factories can be created for different source objects.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder">
+            <summary>
+              <para>Returns a <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/> which creates <see
+                 cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> objects.</para>
+              <para>Mapped properties created with the returned factory have to 
+                 specify the property path relative to the VM. For delegated 
+                 properties the VM instance is passed to their getter/setter 
+                 delegates.</para>
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilderProvider`1.GetPropertyBuilder``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+              Returns a <see cref="T:Inspiring.Mvvm.ViewModels.Core.IVMPropertyBuilder`1"/> which creates <see
+              cref="T:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor"/> objects.
+            </summary>
+            <param name="sourceObjectSelector">
+              An expression of the form 'x => x.Person' that returns an object
+              referenced by the VM. Mapped properties created with the returned 
+              factory have to specify the property path relative to the selected
+              objects. For delegated properties the selected object is passed to
+              their getter/setter delegates.
+            </param>
+            <remarks>
+              This shortens the property path for mapped properties (instead
+              of 'MapsTo(x => x.Person.Age)' you can use 'MapsTo(x => x.Age)' 
+              and instead of 'DelegatesTo(x => x.Person.CalculateReward(...))' 
+              you can use 'DelegatesTo(x => x.CalculateReward(...))'.
+            </remarks>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.ValidationScope">
+            <summary>
+              Determines what part of the VM hierarchy is revalidated.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.ViewModels.ValidationScope.Self">
+            <summary>
+              Only the current VM itself is validated. All validations that 
+              ancestors define for this VM are also performed.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.ViewModels.ValidationScope.SelfAndAllDescendants">
+            <summary>
+              The current VM and all its descendants are revalidated.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.ViewModels.ValidationScope.SelfAndValidatedChildren">
+            <summary>
+              The current VM is revalidated and all children, for which the 
+              current VM defines validators.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder">
+            <summary>
+              A fluent builder that creates and configures a <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/>
+              that can be used for a <see cref="T:Inspiring.Mvvm.ViewModels.ViewModel"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder.OfType``1">
+            <summary>
+              Selects the descriptor type that should be created.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMDescriptorBuilder.Inherits``1(``0)">
+            <summary>
+              Selects the base descriptor on which this descriptor is based.
+            </summary>
+            <param name="descriptor">
+              A <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/> that provides a base configuration
+              (property mappings, validators, behaviors, ...) for this descriptor
+              which can selectively be extended and modified.
+            </param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.ClassDescriptorAttribute">
+            <summary>
+              Marks a static field of type <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/> that holds the
+              descriptor that should be used by the <see cref="T:System.ComponentModel.TypeDescriptionProvider"/>
+              if the view model is used in a designer for example.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.IVMCollection.OwnerVM">
+            <summary>
+              Gets the view model instance that holds this collection instance. 
+              The <see cref="P:Inspiring.Mvvm.ViewModels.IVMCollection.OwnerVM"/> is the parent of all items.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.IVMCollection`1">
+            <summary>
+              An interface that should be implemented by collection classes that are
+              be used in VMs to hold a collection of child VMs. This interface is
+              especially required by the predefined collection behaviors.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.IVMCollection`1.ReplaceItems(System.Collections.Generic.IEnumerable{`0},Inspiring.Mvvm.ViewModels.Core.IChangeReason)">
+            <summary>
+              Clears the collections and adds the <paramref name="newItems"/>.
+            </summary>
+            <param name="newItems"></param>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.VMCollection`1">
+            <summary>
+              
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.#ctor(Inspiring.Mvvm.ViewModels.IViewModel,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor)">
+            <param name="ownerProperty">
+              The descriptor holds the collection behaviors and other metadata.
+            </param>
+            <param name="ownerVM">
+              The view model instance that holds this collection instance. It is
+              the parent of all items.
+            </param>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.VMCollection`1.OwnerVM">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.Move(System.Int32,System.Int32)">
+            <summary>
+              Moves the item currently at <paramref name="fromIndex"/> to be at 
+              <paramref name="toIndex"/> afterwards.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.OnListChanged(System.ComponentModel.ListChangedEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.InsertItem(System.Int32,`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.RemoveItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.SetItem(System.Int32,`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.ClearItems">
+            <inheritdoc />
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.VMCollection`1.Inspiring#Mvvm#ViewModels#IVMCollection{TItemVM}#ReplaceItems(System.Collections.Generic.IEnumerable{`0},Inspiring.Mvvm.ViewModels.Core.IChangeReason)">
+            <inheritdoc />
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2">
+            <summary>
+              <para>Provides a base class for VMs that have a source object.</para>
+            </summary>
+            <remarks>
+              There are two ways a VM may be initialized:
+              <list type="number">
+                 <item>By the framework: If a VM is contained in a VM collection or
+                    in a child VM property, the source is automatically set and the 
+                    child items are validated by the framework when a collection
+                    is populated or a child VM is created.</item>
+                 <item>Manually: If the VM is the root of a VM hierarchy (the VM is
+                    not contained by a collection or a VM property) the developer is
+                    responsible for setting its source and for validating it 
+                    initially.</item>
+              </list>
+              <para>To initialize a VM manually, call <see cref="M:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.InitializeFrom(`1)"/>. If
+                 you want to add code that is executed only on manual initialization,
+                 override <see cref="M:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.InitializeFrom(`1)"/>. If you want to add code that is
+                 executed for manual and automatic initialization, override <see 
+                 cref="M:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.SetSource(`1)"/>.</para>
+            </remarks>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.Inspiring#Mvvm#ViewModels#IHasSourceObject{TSourceObject}#Source">
+            <inheritdoc />
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.Source">
+            <summary>
+              Gets source object.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.InitializeFrom(`1)">
+            <summary>
+              Call this method to initialize a VM manually. See remarks of <see 
+              cref="T:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2"/>.
+            </summary>
+            <remarks>
+              This method calls <see cref="M:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.SetSource(`1)"/> and <see cref="M:Inspiring.Mvvm.ViewModels.ViewModel`1.Revalidate(Inspiring.Mvvm.ViewModels.ValidationScope)"/>.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2.SetSource(`1)">
+            <summary>
+              See remarks of <see cref="T:Inspiring.Mvvm.ViewModels.DefaultViewModelWithSourceBase`2"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.ExtensionMethods.Initialize(Inspiring.Mvvm.ViewModels.Core.BehaviorChain,Inspiring.Mvvm.ViewModels.IVMDescriptor,Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor)">
+            <summary>
+              Initializes the behavior chain for the given VM descriptor and 
+              optionally VM property.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor.PropertyName">
+            <summary>
+              Gets the name of the VM Property. This is the same as the name
+              of the <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/> CLR property that defines the
+              VM property.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor.PropertyType">
+            <summary>
+              The type of the property value.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor.GetValue(Inspiring.Mvvm.ViewModels.Core.IBehaviorContext)">
+            <summary>
+              Gets the value that this property has on the given view model
+              (specified by the <paramref name="context"/> parameter).
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.IVMPropertyDescriptor.Behaviors">
+            <summary>
+              Gets the head of the chain of property behaviors.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.StandardValidations.PropagateChildErrors``3(Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder{``0,``1,``2},System.String)">
+            <summary>
+              Adds an expli1cit view model-level validation error (with the given 
+              <paramref name="errorMessage"/>) to the current VM if any of its 
+              descendants are invalid (see remarks).
+            </summary>
+            <remarks>
+              <para>Beware that the validation state is always propagated to to the
+                 parent (meaning that <see cref="P:Inspiring.Mvvm.ViewModels.ViewModel`1.IsValid"/> returns false
+                 if any descendant is invalid) but <see cref="M:Inspiring.Mvvm.ViewModels.ViewModel`1.GetValidationResult(Inspiring.Mvvm.ViewModels.ValidationResultScope)"/>
+                 with <see cref="F:Inspiring.Mvvm.ViewModels.ValidationResultScope.Self"/> does not return an error
+                 by default unless you add this validation rule.</para>
+              <para>This validation rule is most useful in hierarchical data structures
+                 (e.g. an employee has projects which have tasks which have records) to
+                 guide the user to the (probably not visible) record that is actually
+                 invalid.</para>
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.ViewModels.StandardValidations.ValidateProperties``3(Inspiring.Mvvm.ViewModels.Core.ValidatorBuilder{``0,``1,``2},System.String)">
+            <summary>
+              Adds an explicit view model-level validation error (with the given 
+              <paramref name="errorMessage"/> to the current VM if any of its 
+              properties are invalid (see remarks).
+            </summary>
+            <remarks>
+              This rule is useful if a VM is displayed in a grid where not all
+              properties are visible in the grid. If any of the properites of a
+              VM (visible or not) become invalid, a view model-level (row level)
+              validation error is added to the VM (which is for example visualized
+              by a red cross to the left of the grid row). This indicates to the
+              user that something currently not visible may be invalid and that he
+              or she should open the details of the current record to correct the
+              validation error.
+            </remarks>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.VMDescriptor.Builder">
+            <summary>
+              Gets or sets the builder that was used to create and configure this
+              instance. This is esepcially important for VM inheritance.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ViewModels.EViewModels">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.EViewModels.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.EViewModels.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.EViewModels.BrowsableListRequiresClassDescriptorAttribute">
+            <summary>
+              Looks up a localized string similar to The generic argument specified for &apos;BrowsableViewModelList&apos; must have a static field of type &apos;IVMDescriptor&apos; (or a subclass) that is marked with the &apos;ClassDescriptorAttribute&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ViewModels.EViewModels.ValueAccessedWithinProvideValue">
+            <summary>
+              Looks up a localized string similar to The value of a property with a &apos;CachedValueAccessorBehavior&apos; can only be accessed after the &apos;ProvideValue&apos; method has completed. Make sure you do all your initalization in the &apos;InitializeValue&apos; method..
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.MvvmApplication.Login(Inspiring.Mvvm.Views.IWindowService)">
+            <summary>
+              A hook method you can override to show a custom login dialog. Return true
+              to continue the application startup, false to shutdown the application.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.IServiceLocator.GetInstance``1">
+            <summary>
+              Get an instance of the given <typeparamref name="TService"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.IServiceLocator.TryGetInstance(System.Type)">
+            <summary>
+              Gets an instance of the given <paramref name="serviceType"/> and 
+              returns null if no such service is registered.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Resources.Localized">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.ValidationMax">
+            <summary>
+              Looks up a localized string similar to The value must be less than {0}..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.ValidationMin">
+            <summary>
+              Looks up a localized string similar to The value must be  greater than {0}..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Resources.Localized.ValidationValueInRange">
+            <summary>
+              Looks up a localized string similar to The value must be from {0} to {1}..
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Screens.CustomDialogIcon">
+            <summary>
+              The icon a message box should have. Abstracts the orginal <see 
+              cref="T:System.Windows.MessageBoxImage"/> enum to be more UI agnostic.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Screens.CustomDialogResult">
+            <summary>
+              The button the user has clicked on the message box. Abstracts the <see 
+              cref="T:System.Windows.MessageBoxButton"/> enum to be more UI agnostic.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Screens.ILocatableScreen`1">
+            <summary>
+              See <see cref="T:Inspiring.Mvvm.Screens.ScreenCreationBehavior"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Screens.ILocatableScreen`1.PresentsSubject(`0)">
+            <summary>
+              Returns true, if the screen that implements this interface presents the
+              data specified by the parameter <paramref name="subject"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Screens.IScreenFactory`1.Create(Inspiring.Mvvm.Common.EventAggregator,System.Action{`0})">
+            <remarks>
+              If an exception occurs during initialization it should be rethrown by
+              the implementation.
+            </remarks>
+            <param name="preInitializationCallback">
+              Indended for things that should happen before the screen is initialized.
+            </param>
+        </member>
+        <member name="M:Inspiring.Mvvm.Screens.IScreenFactory`1.CreatesScreensEquivalentTo(Inspiring.Mvvm.Screens.IScreenBase)">
+            <summary>
+              Returns true, if the <see cref="T:Inspiring.Mvvm.Screens.IScreenFactory`1"/> would create 
+              a screen that represents the same data as the screen given by <paramref 
+              name="concreteScreen"/>.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Screens.IScreenFactory`1.ScreenType">
+            <summary>
+              The type of the screen that gets created. You cannot rely on <typeparamref 
+              name="TScreen"/> because <see cref="T:Inspiring.Mvvm.Screens.IScreenFactory`1"/> is covariant. 
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Screens.ScreenCreationBehavior">
+            <summary>
+              Specifies the behavior of the <see cref="M:Inspiring.Mvvm.Screens.ScreenConductor.OpenScreen``1(Inspiring.Mvvm.Screens.IScreenFactory{``0})"/>
+              method.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.Screens.ScreenCreationBehavior.MultipleInstances">
+            <summary>
+              An arbitrary number of instances may be opened at the same time.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.Screens.ScreenCreationBehavior.SingleInstance">
+            <summary>
+              If a screen of the same type is already open, no new screen is created
+              and the existing screen is activated.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.Screens.ScreenCreationBehavior.UseScreenLocation">
+            <summary>
+              For every open screen the <see cref="M:Inspiring.Mvvm.Screens.ILocatableScreen`1.PresentsSubject(`0)"/>
+              method is called. The first open screen that returns true is activated. If 
+              no screen returns true, a new instance is created and initialized with the
+              subject.
+            </summary>
+        </member>
+        <member name="F:Inspiring.Mvvm.Screens.ScreenConductor.ScreenOpenedEvent">
+            <summary>
+              An event that is raised whenever <see cref="M:Inspiring.Mvvm.Screens.ScreenConductor.OpenScreen``1(Inspiring.Mvvm.Screens.IScreenFactory{``0})"/> is called.
+            </summary>
+            <remarks>
+              This event may for example be handled by a view to restore already opened
+              MDI windows that are currently minimized.
+            </remarks>
+        </member>
+        <member name="F:Inspiring.Mvvm.Screens.ScreenConductor.ScreenClosedEvent">
+            <summary>
+              An event that is raised whenever <see cref="M:Inspiring.Mvvm.Screens.ScreenConductor.CloseScreen(Inspiring.Mvvm.Screens.IScreenBase,System.Boolean)"/> is called.
+            </summary>
+            <remarks>
+              This event may for example be handled by a view to save view settings.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Screens.ScreenTreeHelper.GetDescendantsOf(Inspiring.Mvvm.Screens.IScreenBase,System.Boolean)">
+            <summary>
+              Breadth-first traversation.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.ExceptionTexts">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.BehaviorKeyNotInConfiguration">
+            <summary>
+              Looks up a localized string similar to The &apos;BehaviorChainConfiguration&apos; does not contain a behavior with the key &apos;{0}&apos;. Make sure that the &apos;BehaviorChainTemplate&apos; from which the configuration was created contains a behavior with the given key..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.BehaviorNotContainedByConfiguration">
+            <summary>
+              Looks up a localized string similar to This configuration does not contain the specified behavior &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.BehaviorNotFound">
+            <summary>
+              Looks up a localized string similar to Could not find a behavior of type &apos;{0}&apos; in the chain of behaviors. Make sure that the list contains a behavior of that type before calling this operation or add a behavior of that type before..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.BehaviorNotInitialized">
+            <summary>
+              Looks up a localized string similar to The operation cannot be performed because the behavior is not initialized..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.BehaviorNotRegistered">
+            <summary>
+              Looks up a localized string similar to The behavior &apos;{0}&apos; ist not registered. Make sure you specified the exact type of an already registered behavior..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.BehaviorNotSupportedByFactory">
+            <summary>
+              Looks up a localized string similar to The default behavior factory does not support creating behaviors for &apos;{0}&apos;. Specify a custom &apos;IBehaviorFactory&apos; when you configure your &apos;BehaviorChainTemplate&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CannotEnableBehavior">
+            <summary>
+              Looks up a localized string similar to Cannot enable behavior with key &apos;{0}&apos; because no behavior instance was specified. Either specify a &apos;IBehaviorFactory&apos; in the &apos;BehaviorChainTemplate&apos; or pass in an &apos;IBehavior&apos; instance..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CannotPassClosedTypeBehavior">
+            <summary>
+              Looks up a localized string similar to Cannot register or search for a closed generic type. Pass &apos;typeof(ExampleBehavior&lt;,&gt;)&apos; instead of &apos;typeof(ExampleBehavior&lt;A, B&gt;)&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CannotPrependCollectionToEmptyInstancePath">
+            <summary>
+              Looks up a localized string similar to &apos;PrependCollection&apos; is only valid for &apos;InstancePath&apos;s with at least one step because the collection is always associated with the last prepended VM. Make sure you have called &apos;PrependVM&apos; at least once before calling &apos;PrependCollection&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CannotSetValueOfEmptyPropertyPath">
+            <summary>
+              Looks up a localized string similar to The value of an empty property path cannot be set. Make sure the path contains at least one property access like &apos;x =&gt; x.Address&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CannotSetVMCollectionProperties">
+            <summary>
+              Looks up a localized string similar to The value of a &apos;VMCollectionProperty&apos; cannot be set because it is created and managed by the view model framework. Use the &apos;VMCollection&apos; methods to modify the content of the collection..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CollectionSourceDoesNotImplementListInterface">
+            <summary>
+              Looks up a localized string similar to The &apos;VMCollection&lt;TItemVM&gt;&apos; cannot be modified. To support modifications, the source collection to which the &apos;VMCollection&apos; is mapped must implement &apos;IList&lt;T&gt;&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.CouldNotResolveView">
+            <summary>
+              Looks up a localized string similar to Cannot set the attached property &apos;View.Model&apos; to an instance of type &apos;{0}&apos; because no view implementation is registered that implements &apos;IView&lt;T&gt;&apos; where T is &apos;{0}&apos; or a base type . Make sure you assigned the correct value or use your dependency injection container to register an appropriate view..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.DescriptorCannotBeChanged">
+            <summary>
+              Looks up a localized string similar to The descriptor of a &apos;IViewModel&apos; cannot be changed once it has been set..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.DescriptorNotSet">
+            <summary>
+              Looks up a localized string similar to The operation is not valid because no &apos;VMDescriptor&apos; is set on the VM. Make sure that the &apos;DescriptorBase&apos; property is set before calling any operation by either passing the &apos;VMDescriptor&apos; to the &apos;ViewModel&apos; constructor or by adding the VM to a &apos;VMCollection&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.DisplayValueHasWrongType">
+            <summary>
+              Looks up a localized string similar to Could not set the display value of the &apos;VMProperty&apos; &apos;{0}&apos; because the value has the wrong type. Make sure that you only set it to values that are compatible with &apos;{1}&apos; our use an &apos;IVMValueConverter&apos; with the property that does the conversion. The orignal value was: &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ExpressionCannotContainFields">
+            <summary>
+              Looks up a localized string similar to Fields are not supported in property paths. Make sure you only reference properties..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ExpressionContainsMoreThanOneProperty">
+            <summary>
+              Looks up a localized string similar to The given expression consists of more than one property. It must select a single property like &apos;x =&gt; x.Address&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ExpressionContainsNoProperties">
+            <summary>
+              Looks up a localized string similar to The given expression does not select a property. It must select a single property like &apos;x =&gt; x.Address&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.FieldNotSet">
+            <summary>
+              Looks up a localized string similar to No value is currently set for the passed &apos;FieldDefinition&apos;. Either call &apos;SetValue&apos; before &apos;GetValue&apos; or use &apos;GetValueOrDefault&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.FolderBrowserDialogNoRootFolder">
+            <summary>
+              Looks up a localized string similar to Unable to retrieve the root folder..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ForeignField">
+            <summary>
+              Looks up a localized string similar to The passed field does not belong to the same &apos;FieldDefinitionCollection&apos; as this &apos;FieldValueHolder&apos;. Make sure you only access &apos;FieldDefintion&apos;s that were defined on the same &apos;FieldDefintionCollection&apos; instance that was used to create the &apos;FieldValueHolder&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.GetDescaedantsWrongPropertyStepType">
+            <summary>
+              Looks up a localized string similar to Descendants can only requested for view model or collection properties..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.GetPropertiesWithAttributesIsNotSupport">
+            <summary>
+              Looks up a localized string similar to &apos;GetProperties&apos; with an &apos;attributes&apos; parameter to filter the returned properties is not supported..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.HasSourceObjectInterfaceNotImplemented">
+            <summary>
+              Looks up a localized string similar to The &apos;VMCollection&lt;TItemVM&gt;&apos; cannot be modified. To support modifications (add, remove and move items), the type of the conatained &apos;ViewModel&apos; objects (&apos;TItemVM&apos;) must implement &apos;IHasSourceObject&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.IncompleteDependencySetupMissingAction">
+            <summary>
+              Looks up a localized string similar to Dependency configuration is incomplete.  No action specified..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.IncompleteDependencySetupMissingTargetPath">
+            <summary>
+              Looks up a localized string similar to Dependency configuration is incomplete. For validation and refresh actions a target path is required..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.InvalidComponentInstance">
+            <summary>
+              Looks up a localized string similar to Parameter &apos;component&apos; is not a valid &apos;IViewModel&apos;. Make sure you pass an object that implements &apos;IViewModel&apos; to &apos;TypeDescriptor.GetValue&apos; and &apos;TypeDescriptor.SetValue&apos;. The value of &apos;component&apos; was: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.InvalidTargetObjectForCommonBehavior">
+            <summary>
+              Looks up a localized string similar to The &apos;CommonBehaviors&apos; behavior &apos;{0}&apos; cannot be enabled on the given object..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.LifecycleExceptionOccured">
+            <summary>
+              Looks up a localized string similar to A lifecycle event handler of a screen (Initialize, Activate, Deactivate, Close, RequestClose) threw an exception..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.LifecycleTypeNotFound">
+            <summary>
+              Looks up a localized string similar to The collection contains no &apos;IScreenLifecycle&apos; of type &apos;{0}&apos;. Use &apos;Contains&apos; to check if an &apos;IScreenLifecycle&apos; is contained in a collection..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.MoreThanOneLifecycleTypeFound">
+            <summary>
+              Looks up a localized string similar to The collection contains more than one &apos;IScreenLifecycle&apos; of type &apos;{0}&apos;. You can use &apos;Contains&apos; before you add a &apos;IScreenLifecycle&apos; to ensure that only one instance of a certain type is added..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.MultipleUndoRoots">
+            <summary>
+              Looks up a localized string similar to At most one ancestor of a certain distance can be the undo root..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.NoAssociatedWindow">
+            <summary>
+              Looks up a localized string similar to The given &apos;screen&apos; (or one of its parents) is not associated with a &apos;Window&apos;. Make sure you only call this operation for screens that are currently shown..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.NoServiceLocatorConfigured">
+            <summary>
+              Looks up a localized string similar to No service locator is configured. Make sure you call &apos;ServiceLocator.SetServiceLocator&apos; and pass in your implementation of the &apos;IServiceLocator&apos; interface..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.NoSetterDelegate">
+            <summary>
+              Looks up a localized string similar to Cannot set calculated property because no setter delegate was specified..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.NoUndoRootManagerFound">
+            <summary>
+              Looks up a localized string similar to Undo functionality is enabled but no undo manager is found in the view model hierarchy.
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ObjectIsSealed">
+            <summary>
+              Looks up a localized string similar to The object cannot be modified because it is sealed. Make sure you make all modifications before the object is sealed..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.OperationInvalidForBindingType">
+            <summary>
+              Looks up a localized string similar to This binding configuration cannot be applied to the given type of binding..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.PropertyIsNotContainedByParentDescriptor">
+            <summary>
+              Looks up a localized string similar to Next property step is invalid. Property is not contained by parent descriptor..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.PropertyIsReadonly">
+            <summary>
+              Looks up a localized string similar to Cannot set the value of property path &apos;{0}&apos; because the property &apos;{1}&apos; does not have a setter..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.PropertyNotFound">
+            <summary>
+              Looks up a localized string similar to The VM descriptor does not define a VM Property with the name &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.PropertyStepIsNull">
+            <summary>
+              Looks up a localized string similar to Could not get or set the value of the property path &apos;{0}&apos; because &apos;{1}&apos; is null on object &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.RegisterWindowMessageFailed">
+            <summary>
+              Looks up a localized string similar to Could not initialize the InterprocessMessenger. RegisterWindowMessage failed..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.RollbackPointNotFound">
+            <summary>
+              Looks up a localized string similar to The &apos;UndoManager&apos; does not contain the rollback point..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ScreenConductorNotFound">
+            <summary>
+              Looks up a localized string similar to No &apos;ScreenConductor&apos; with a &apos;ScreenId&apos; of &apos;{0}&apos; could be found. Make sure that the current screen hierarchy contains a &apos;ScreenConductor&apos; instance that implements &apos;IIdentifiedScreen&apos; and returns the given id (this only applies if the &apos;screenId&apos; is not null)..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ScreenIsNoDialog">
+            <summary>
+              Looks up a localized string similar to This operation can only be called for screens that were created using &apos;IDialogService.ShowDialog&apos; or &apos;IWindowService.CreateDialogWindow&apos; method..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ScreenLifecycleNoTransition">
+            <summary>
+              Looks up a localized string similar to The event &apos;{0}&apos; is not allowed for the current state &apos;{1}&apos; (no matching transition is defined)..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ScreenNotContainedByConductor">
+            <summary>
+              Looks up a localized string similar to The given screen is not contained by this conductor..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ServiceAlreadyRegistered">
+            <summary>
+              Looks up a localized string similar to A serivce of type &apos;{0}&apos; is already registered. A registration cannot be overriden..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ServiceNotRegistered">
+            <summary>
+              Looks up a localized string similar to No instance was registered for the requested service type &apos;{0}&apos;. Call &apos;RegisterService&apos; to register an instance..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.TypeIsNoBehavior">
+            <summary>
+              Looks up a localized string similar to The passed type must be a non-abstract class that implements &apos;IBehavior&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.UnexpectedPathStepType">
+            <summary>
+              Looks up a localized string similar to The given &apos;Path&apos; is invalid: The &apos;PathStep&apos; at index {0} was expected to be of one of the following &apos;PathStepType&apos;s: {1}..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.UnsupportedCollectionChangedAction">
+            <summary>
+              Looks up a localized string similar to The given &apos;NotifyCollectionChangedAction&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.UnsupportedParameterlessPropertyExpression">
+            <summary>
+              Looks up a localized string similar to The given expression does not select a single property. Make sure it has the form &apos;() =&gt; FirstName&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.UnsupportedPropertyPathExpression">
+            <summary>
+              Looks up a localized string similar to The given expression is not a valid property path. It must only select properties like  &apos;x =&gt; x.Address.City&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.UnsupportedTargetTypeForModelProperty">
+            <summary>
+              Looks up a localized string similar to Cannot set the attached property &apos;View.Model&apos; on an object of type &apos;{0}&apos; to an object of type &apos;{1}&apos;. Make sure the value is of a type &apos;T&apos; for which you have registered an &apos;IView&lt;T&gt;&apos; implementation. Also note that this property can only be set on instances of &apos;ContentControl&apos;, &apos;ContentPresenter&apos; and &apos;IView&lt;T&gt;&apos; where T is &apos;{1}&apos; (or a base type)..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.ValidationStateCannotBeModified">
+            <summary>
+              Looks up a localized string similar to &apos;ValidationState.Valid&apos; is readonly and cannot be modified. Create a new &apos;ValidationState&apos; instance to add validation errors..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.VMCollectionOutOfSync">
+            <summary>
+              Looks up a localized string similar to The VM collection is not in sync with its source collection anymore. Call &apos;Kernel.UpdateFromSource(Descriptor.&lt;the collection property&gt;)&apos; to repopulate the collection from its source..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.WeakCollectionDoesNotSupportNullItems">
+            <summary>
+              Looks up a localized string similar to The &apos;WeakCollection&apos; does not support &apos;null&apos; items..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.WindowDialogResultNotAssigned">
+            <summary>
+              Looks up a localized string similar to The &apos;Window.DialogResult&apos; property was not assigned yet by the view. Make sure you call this method only in &apos;OnRequestClose&apos; and &apos;OnClose&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.ExceptionTexts.WrongBehaviorFactoryType">
+            <summary>
+              Looks up a localized string similar to Cannot create a behavior for &apos;{0}&apos;. Expected a behavior factory of type &apos;{1}&apos; but got one of type &apos;{2}&apos;. Make sure that you passed the correct factory to your &apos;BehaviorChainTemplate&apos;..
+            </summary>
+        </member>
+        <member name="P:Inspiring.Mvvm.Views.FolderBrowserDialog.Description">
+            <summary>
+            Gets or sets the descriptive text displayed above the tree view control in the dialog box, or below the list view control
+            in the Vista style dialog.
+            </summary>
+            <value>
+            The description to display. The default is an empty string ("").
+            </value>
+        </member>
+        <member name="P:Inspiring.Mvvm.Views.FolderBrowserDialog.RootFolder">
+            <summary>
+            Gets or sets the root folder where the browsing starts from. This property has no effect if the Vista style
+            dialog is used.
+            </summary>
+            <value>
+            One of the <see cref="T:System.Environment.SpecialFolder" /> values. The default is Desktop.
+            </value>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The value assigned is not one of the <see cref="T:System.Environment.SpecialFolder" /> values.</exception>
+        </member>
+        <member name="P:Inspiring.Mvvm.Views.FolderBrowserDialog.SelectedPath">
+            <summary>
+            Gets or sets the path selected by the user.
+            </summary>
+            <value>
+            The path of the folder first selected in the dialog box or the last folder selected by the user. The default is an empty string ("").
+            </value>
+        </member>
+        <member name="P:Inspiring.Mvvm.Views.FolderBrowserDialog.ShowNewFolderButton">
+            <summary>
+            Gets or sets a value indicating whether the New Folder button appears in the folder browser dialog box. This
+            property has no effect if the Vista style dialog is used; in that case, the New Folder button is always shown.
+            </summary>
+            <value>
+            <see langword="true" /> if the New Folder button is shown in the dialog box; otherwise, <see langword="false" />. The default is <see langword="true" />.
+            </value>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.FolderBrowserDialog.ShowDialog(System.Windows.Window)">
+            <summary>
+            Displays the folder browser dialog.
+            </summary>
+            <param name="owner">Handle to the window that owns the dialog.</param>
+            <returns>If the user clicks the OK button, <see langword="true" /> is returned; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.FolderBrowserDialog.Reset">
+            <summary>
+            Resets all properties to their default values.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Views.IMalloc">
+            <summary>
+            C# definition of the IMalloc interface.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.IMalloc.Alloc(System.UInt32)">
+            <summary>
+            Allocate a block of memory
+            </summary>
+            <param name="cb">Size, in bytes, of the memory block to be allocated.</param>
+            <returns>a pointer to the allocated memory block.</returns>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.IMalloc.Realloc(System.IntPtr,System.UInt32)">
+            <summary>
+            Changes the size of a previously allocated memory block.
+            </summary>
+            <param name="pv">Pointer to the memory block to be reallocated</param>
+            <param name="cb">Size of the memory block, in bytes, to be reallocated.</param>
+            <returns>reallocated memory block</returns>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.IMalloc.Free(System.IntPtr)">
+            <summary>
+            Free a previously allocated block of memory.
+            </summary>
+            <param name="pv">Pointer to the memory block to be freed.</param>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.IMalloc.GetSize(System.IntPtr)">
+            <summary>
+            This method returns the size, in bytes, of a memory block previously allocated with IMalloc::Alloc or IMalloc::Realloc.
+            </summary>
+            <param name="pv">Pointer to the memory block for which the size is requested</param>
+            <returns>The size of the allocated memory block in bytes.</returns>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.IMalloc.DidAlloc(System.IntPtr)">
+            <summary>
+            This method determines whether this allocator was used to allocate the specified block of memory.
+            </summary>
+            <param name="pv">Pointer to the memory block</param>
+            <returns>
+            1 - allocated 
+            0 - not allocated by this IMalloc Instance.
+            -1 if DidAlloc is unable to determine whether or not it allocated the memory block.
+            </returns>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.IMalloc.HeapMinimize">
+            <summary>
+            Minimizes the heap by releasing unused memory to the operating system.
+            </summary>
+        </member>
+        <member name="T:Inspiring.Mvvm.Views.Binder.VMPropertyBinder`1">
+            <summary>
+            Binds a property of a <see cref="T:Inspiring.Mvvm.ViewModels.VMDescriptor"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.DialogService.Show(Inspiring.Mvvm.Screens.IScreenFactory{Inspiring.Mvvm.Screens.IScreenBase},Inspiring.Mvvm.Screens.IScreenBase,System.String)">
+            <remarks>
+              Note to inheritors: This method does not call <see 
+              cref="M:Inspiring.Mvvm.Views.DialogService.Show(System.Windows.Window,Inspiring.Mvvm.Screens.IScreenFactory{Inspiring.Mvvm.Screens.IScreenBase},System.Boolean)"/>.
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.DialogService.ShowDialog(Inspiring.Mvvm.Screens.IScreenFactory{Inspiring.Mvvm.Screens.IScreenBase},Inspiring.Mvvm.Screens.IScreenBase,System.String)">
+            <remarks>
+              Note to inheritors: This method does not call <see 
+              cref="M:Inspiring.Mvvm.Views.DialogService.Show(System.Windows.Window,Inspiring.Mvvm.Screens.IScreenFactory{Inspiring.Mvvm.Screens.IScreenBase},System.Boolean)"/>.
+            </remarks>
+        </member>
+        <member name="P:Inspiring.Mvvm.Views.IVMBinder`1.PathPrefix">
+            <summary>
+              This is a personal and temporar HACK (!!!) for Stefan! Do NOT USE this!
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.WindowLifecycle.HandleClose(System.Boolean)">
+            <summary>
+              This method is called when the close is triggered by code (instead of the
+              user clicking on the 'X' for example).
+            </summary>
+            <exception cref="T:Inspiring.Mvvm.Screens.ScreenLifecycleException">
+              The dialog was shown modal and a lifecycle event handler (RequestClose, 
+              Deactivate or Close) of the screen has thrown an exception.
+            </exception>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.WindowLifecycle.CloseWindowImmediatately">
+            <summary>
+              Directly closes the window without executing the <see cref="M:Inspiring.Mvvm.Views.WindowLifecycle.HandleWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)"/> 
+              or <see cref="M:Inspiring.Mvvm.Views.WindowLifecycle.HandleWindowClosed(System.Object,System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.WindowLifecycle.HandleWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+             This handler is called if the close is trigger by the user (clicking the
+             'X' for example).
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.WindowLifecycle.HandleWindowClosed(System.Object,System.EventArgs)">
+            <remarks>
+              Only called if the window is closed by the user (clicking the X).
+            </remarks>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.WindowLifecycle.HandleWindowClosedToDisconnected(System.Object,System.EventArgs)">
+            <summary>
+              Always called to clean up and remove obsolete references.
+            </summary>
+        </member>
+        <member name="M:Inspiring.Mvvm.Views.WindowLifecycle.ProcessWindowEventHandlerException(Inspiring.Mvvm.Screens.ScreenLifecycleException)">
+            <remarks>
+              <para>WPF behaves very strange when an exception is thrown in a 'Closed' or 
+                 'Closing' event handler: the exception is swalled and the 'ShowDialog' call 
+                 returns but the window still stays open and seems half disposed.</para>
+              <para>To work arround this we catch the exception ourself. If the window
+                was shown with 'ShowDialog' we save the exception and rethrow it after 
+                'ShowDialog' returns, so the caller can handle the exception. If the 
+                window was shown with 'Show' we rethrow the exception with the 'Dispatcher'
+                so that is treated as an unhandled application excpetion.</para>
+            </remarks>
+        </member>
+    </members>
+</doc>

@@ -4,47 +4,55 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MvvmJonasTest.ViewModels"
-        xmlns:mvvmJonasTest="clr-namespace:MvvmJonasTest"
-
         mc:Ignorable="d"
-        Title="ProOrder 5000k" Height="450" Width="800"
+        Title="ProOrder 5000k"
+        Height="450"
+        Width="800"
         d:DataContext="{d:DesignInstance Type={x:Type local:MainWindowViewModel}}">
+
     <Window.DataContext>
-        <local:MainWindowViewModel/>
+        <local:MainWindowViewModel />
     </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Main.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="209*"/>
-            <ColumnDefinition Width="209*"/>
-            <ColumnDefinition Width="209*"/>
+            <ColumnDefinition Width="209*" />
+            <ColumnDefinition Width="209*" />
+            <ColumnDefinition Width="209*" />
         </Grid.ColumnDefinitions>
-        <!--<ListBox ItemsSource="{Binding Users, Mode=OneWay}" DisplayMemberPath="Name"/>-->
-        <ListBox Margin="20,20,20,20" ItemsSource="{Binding Users, Mode=OneWay}" SelectedItem="{Binding SelectedUser}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding UserName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
-        <ListBox Margin="20,20,20,20" ItemsSource="{Binding SelectedUser.Orders, Mode=OneWay}" SelectedItem="{Binding SelectedUser.CurrentOrder}" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ProductName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox ItemsSource="{Binding Users, Mode=OneWay}"
+                 SelectedItem="{Binding SelectedUser}"
+                 Style="{StaticResource ListboxUser}" />
+
+        <ListBox Grid.Column="1"
+                 ItemsSource="{Binding SelectedUser.Orders, Mode=OneWay}"
+                 SelectedItem="{Binding SelectedUser.CurrentOrder}"
+                 Style="{StaticResource ListboxProduct}" />
 
         <StackPanel Grid.Column="2">
-            <TextBox Height= "23"  Margin="10,10,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Text="{Binding SelectedUser.CurrentOrder.ProductName, Mode=OneWay}"/>
-            <TextBox Height= "200" Margin="10,10,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Text="{Binding SelectedUser.CurrentOrder.Anmerkungen}"  />
-            <TextBox Height= "23"  Margin="10,10,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Text="{Binding SelectedUser.CurrentOrder.Price, StringFormat={}{0} €}" />
-            <Button Height=  "23"   Margin="10,10,10,0" Content="Do Something" Command="{Binding DoSomethingCommand}"/>
-        </StackPanel>
+            <TextBox Text="{Binding SelectedUser.CurrentOrder.ProductName, Mode=OneWay}"
+                     Style="{StaticResource TextboxMainWindowBase}"
+                     Height= "23" />
 
+            <TextBox Text="{Binding SelectedUser.CurrentOrder.Anmerkungen}"
+                     Style="{StaticResource TextboxMainWindowBase}"
+                     Height= "200" />
+
+            <TextBox Text="{Binding SelectedUser.CurrentOrder.Price, StringFormat={}{0} €}"
+                     Style="{StaticResource TextboxPrice}" />
+
+            <Button Content="Do Something"
+                    Style="{StaticResource ButtonDoSomething}"
+                    Command="{Binding DoSomethingCommand}" />
+        </StackPanel>
     </Grid>
 </Window>
