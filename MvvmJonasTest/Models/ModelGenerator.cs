@@ -10,94 +10,91 @@ namespace MvvmJonasTest.Models
 {
     internal class ModelGenerator
     {
-        private const string Produkte = "Produkte";
-        private static Random _rnd = new Random();
-        private static ResourceManager _resources = new ResourceManager("MvvmJonasTest.Properties.Resources", typeof(Resources).Assembly);
+        private static readonly Random _rnd = new Random();
+        private static readonly ResourceManager _resources = new ResourceManager("MvvmJonasTest.Properties.Resources", typeof(Resources).Assembly);
+        private static Product[] _productsCache;
+        private static IEnumerable<User> _userModelCache;
+        private static IEnumerable<OrderLogItem> _orderLogItemsCache;
         private static Product[] _products;
 
-        private static IEnumerable<User> _userModelCache;
-
-        private static IEnumerable<OrderLogItem> _orderLogItemsCache;
-
-        // private static IEnumerable<OrderLogItem> OrderLogItemsCache => _orderLogItemsCache ?? (_orderLogItemsCache = GenerateOrderLogItems());
-
-        //public static IEnumerable<ModelBase> GetDistinctUsers()
-        //{
-        //}
-
-        //public static IEnumerable<ModelBase> GetDistinctProducts()
-        //{
-        //}
-
-        //public static IEnumerable<OrderLogItem> GetOrderLogItems()
-        //{
-        //    return OrderLogItemsCache;
-        //}
-
-        private static IEnumerable<OrderLogItem> GenerateOrderLogItems()
+        public static IEnumerable<Product> GetProducts()
         {
-            var result = new List<OrderLogItem>();
+            return Products;
+        }
 
-            foreach (User userModel in GetUserModels())
-            {
-                foreach (Order orderModel in userModel.Orders)
-                {
-                    var item = new OrderLogItem
-                    {
-                        UserId = userModel.Id,
-                        UserName = userModel.Name,
-                        Id = orderModel.Id,
-                        Comment = orderModel.Comment,
-                        OrderDate = orderModel.OrderDate,
-                        OrderItems = orderModel.OrderItems
-                    };
-
-                    result.Add(item);
-                }
-            }
-
-            return result;
+        public static IEnumerable<OrderLogItem> GetOrderLogItems()
+        {
+            return GenerateOrderLogItems();
         }
 
         public static IEnumerable<User> GetUserModels()
         {
+            return GenerateUserModels();
+        }
+
+        private static IEnumerable<User> GenerateUserModels()
+        {
             if (_userModelCache == null)
             {
                 var entenHausen = _resources.GetString("Entenhausen")
-                    ?.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-
-                if (entenHausen == null)
-                {
-                    return default;
-                }
-
-                _userModelCache = entenHausen
+                    ?.Split(new[] { Environment.NewLine }, StringSplitOptions.None)
                     .Select(x => new User
                     {
                         Id = Guid.NewGuid(),
                         Name = x,
                         PersonalText = RandomHelper.RandomString(50),
-                        Orders = Enumerable.Range(10, 100).Select(m => RandomOrders(_rnd.Next(m))).ToList(),
+                        Orders = Enumerable.Range(10, 100).Select(m => GenerateOrderModel(_rnd.Next(m))).ToList(),
                     })
                     .ToList();
+
+                _userModelCache = entenHausen;
             }
             return _userModelCache;
         }
 
-        private static Order RandomOrders(int products)
+        private static IEnumerable<OrderLogItem> GenerateOrderLogItems()
+        {
+            if (_orderLogItemsCache == null)
+            {
+                var result = new List<OrderLogItem>();
+
+                foreach (User userModel in GetUserModels())
+                {
+                    foreach (Order orderModel in userModel.Orders)
+                    {
+                        foreach (OrderItem orderItem in orderModel.OrderItems)
+                        {
+                            var item = new OrderLogItem
+                            {
+                                UserId = userModel.Id,
+                                ProductId = orderItem.Product.Id,
+                                UserName = userModel.Name,
+                                ProductName = orderItem.Product.Name,
+                                OrderDate = orderModel.OrderDate,
+                                Comment = orderModel.Comment,
+                                Price = orderItem.Product.Price,
+                                Amount = orderItem.Amount
+                            };
+
+                            result.Add(item);
+                        }
+                    }
+                }
+
+                _orderLogItemsCache = result;
+            }
+
+            return _orderLogItemsCache;
+        }
+
+        private static Order GenerateOrderModel(int amountProducts)
         {
             var model = new Order
             {
                 OrderDate = GetRandomDatetime(),
                 Comment = RandomHelper.RandomString(10),
+                OrderItems = GenerateOrderItems(amountProducts).ToList(),
             };
-
-            model.OrderItems = RandomProducts(products)
-                .Select(x => new OrderItem
-                {
-                    Product = x,
-                    Amount = _rnd.Next(1, 500),
-                }).ToList();
 
             return model;
         }
@@ -113,12 +110,14 @@ namespace MvvmJonasTest.Models
                 _rnd.Next(0, 60));
         }
 
-        private static IEnumerable<Product> RandomProducts(int amount)
+        private static IEnumerable<OrderItem> GenerateOrderItems(int amount)
         {
-            for (int i = 0; i < amount; i++)
-            {
-                yield return Products[_rnd.Next(Products.Length)];
-            }
+            return Enumerable.Range(0, amount)
+                .Select(x => new OrderItem
+                {
+                    Product = Products[_rnd.Next(Products.Length)],
+                    Amount = _rnd.Next(1, 500),
+                });
         }
 
         private static Product[] Products
@@ -127,11 +126,12 @@ namespace MvvmJonasTest.Models
             {
                 if (_products == null)
                 {
-                    _products = _resources.GetString(Produkte)?
-                        .Split(new[] { Environment.NewLine }, StringSplitOptions.None).Select(x => new Product
+                    _products = _resources.GetString("Produkte")
+                        ?.Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+                        .Select(x => new Product
                         {
                             Name = x,
-                            Price = _rnd.Next(5000),
+                            Price = _rnd.Next(15),
                             ProductDescription = RandomHelper.RandomString(30),
                         })
                         .ToArray();

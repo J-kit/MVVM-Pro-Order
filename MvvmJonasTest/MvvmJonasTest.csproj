@@ -71,6 +71,7 @@
     <Compile Include="Utils\RandomHelper.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OrderItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderLogItemViewModel.cs" />
     <Compile Include="ViewModels\OrderLogViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />

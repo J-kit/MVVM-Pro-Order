@@ -33,6 +33,14 @@
         </StackPanel>
     </DataTemplate>
 
+    <DataTemplate x:Key="TemplateComboboxSelection"
+                  DataType="{x:Type models:ModelBase}">
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name, Mode=OneWay}" />
+        </StackPanel>
+    </DataTemplate>
+
     <Style x:Key="TextboxMainWindowBase"
            TargetType="{x:Type TextBox}"
            BasedOn="{StaticResource TextboxBase}">
@@ -73,7 +81,7 @@
 
         <Style.Triggers>
 
-            <DataTrigger Binding="{Binding SelectedUser.CurrentOrder.Price}"
+            <DataTrigger Binding="{Binding SelectedOrder.Price}"
                          Value="0">
 
                 <Setter Property="Foreground"
@@ -120,6 +128,20 @@
 
         <Setter Property="Margin"
                 Value="20" />
+    </Style>
+
+    <Style x:Key="TextColumnNumber"
+           TargetType="{x:Type TextBlock}">
+
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+    </Style>
+
+    <Style x:Key="ComboboxSelection"
+           TargetType="{x:Type ComboBox}">
+
+        <Setter Property="ItemTemplate"
+                Value="{StaticResource TemplateComboboxSelection}" />
     </Style>
 
     <DataTemplate x:Key="Userverwaltung">

@@ -22,8 +22,10 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <TabControl DataContext="{Binding UserAdministrationViewModel}">
-        <TabItem Header="Userverwaltung">
+    <TabControl>
+        <TabItem Header="Userverwaltung"
+                 DataContext="{Binding UserAdministration}">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -66,7 +68,9 @@
             </Grid>
         </TabItem>
 
-        <!--<TabItem Header="Bestellungslog">
+        <TabItem Header="Bestellungslog"
+                 DataContext="{Binding OrderLog}">
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -76,9 +80,8 @@
                 <GroupBox Grid.Row="0"
                           Margin="3">
 
-                    -->
-        <!-- Filter-->
-        <!--
+                    <!--Filter-->
+
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -87,7 +90,7 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -96,15 +99,17 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        -->
-        <!-- First Row -->
-        <!--
+                        <!--First Row-->
+
                         <TextBlock Grid.Column="0"
-                               Grid.Row="0"
-                               Text="User" />
+                                   Grid.Row="0"
+                                   Text="User" />
 
                         <ComboBox Grid.Column="1"
-                              Grid.Row="0" />
+                                  Grid.Row="0"
+                                  ItemsSource="{Binding Users}"
+                                  SelectedItem="{Binding LogFilter.SelectedUser}"
+                                  Style="{StaticResource ComboboxSelection}" />
 
                         <TextBlock Grid.Column="2"
                                Grid.Row="0"
@@ -120,15 +125,17 @@
                         <TextBox Grid.Column="5"
                              Grid.Row="0" />
 
-                        -->
-        <!-- Second Row -->
-        <!--
+                        <!--Second Row-->
+
                         <TextBlock Grid.Column="0"
                                Grid.Row="1"
                                Text="Produkt" />
 
                         <ComboBox Grid.Column="1"
-                              Grid.Row="1" />
+                                  Grid.Row="1"
+                                  ItemsSource="{Binding Products}"
+                                  SelectedItem="{Binding LogFilter.SelectedProduct}"
+                                  Style="{StaticResource ComboboxSelection}" />
 
                         <TextBlock Grid.Column="2"
                                Grid.Row="1"
@@ -146,15 +153,27 @@
                     </Grid>
                 </GroupBox>
 
-                -->
-        <!-- Content Daten-->
-        <!--
+                <!--Content Daten-->
+
                 <DataGrid Grid.Row="1"
-                          ItemsSource="{Binding OrderLogViewModel.OrderLogItems, Mode=OneWay}"
+                          ItemsSource="{Binding OrderLogItems, Mode=OneWay}"
                           AutoGenerateColumns="False"
-                          IsReadOnly="True">
+                          IsReadOnly="True"
+                          EnableRowVirtualization="True">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsVisible}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
 
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Bestelldatum"
+                                            Binding="{Binding OrderDateTime, StringFormat= {}{0:d}, ConverterCulture='de-AT', Mode=OneWay}" />
+
                         <DataGridTextColumn Header="Usernane"
                                             Binding="{Binding UserName, Mode=OneWay}" />
 
@@ -162,16 +181,18 @@
                                             Binding="{Binding ProductName, Mode=OneWay}" />
 
                         <DataGridTextColumn Header="Preis"
-                                            Binding="{Binding Price, StringFormat= {}{0:c}, ConverterCulture='de-AT', Mode=OneWay}" />
+                                            Binding="{Binding ProductPrice, StringFormat= {}{0:c}, ConverterCulture='de-AT', Mode=OneWay}"
+                                            ElementStyle="{StaticResource TextColumnNumber}" />
 
-                        <DataGridTextColumn Header="Bestelldatum"
-                                            Binding="{Binding OrderDate, ConverterCulture='de-AT', Mode=OneWay}" />
+                        <DataGridTextColumn Header="Menge"
+                                            Binding="{Binding Amount, Mode=OneWay}"
+                                            ElementStyle="{StaticResource TextColumnNumber}" />
 
                         <DataGridTextColumn Header="Anmerkung"
-                                            Binding="{Binding Anmerkungen, Mode=OneWay}" />
+                                            Binding="{Binding Comment, Mode=OneWay}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-        </TabItem>-->
+        </TabItem>
     </TabControl>
 </Window>
