@@ -7,4 +7,11 @@
         <Setter Property="FontFamily"
                 Value="Comic Sans MS" />
     </Style>
+
+    <Style x:Key="TextblockBase"
+           TargetType="{x:Type TextBlock}">
+
+        <Setter Property="FontFamily"
+                Value="Comic Sans MS" />
+    </Style>
 </ResourceDictionary>

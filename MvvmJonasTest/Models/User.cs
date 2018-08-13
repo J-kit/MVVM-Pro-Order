@@ -2,9 +2,9 @@
 
 namespace MvvmJonasTest.Models
 {
-    public class UserModel : ModelBase
+    public class User : ModelBase
     {
         public string PersonalText { get; set; }
-        public List<OrderModel> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

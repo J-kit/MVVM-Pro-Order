@@ -63,13 +63,18 @@
       <DependentUpon>ExceptionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\OrderLogItem.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\RandomHelper.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\OrderItemViewModel.cs" />
     <Compile Include="ViewModels\OrderLogViewModel.cs" />
-    <Compile Include="ViewModels\OrderModelViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\UserAdministrationViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="ExceptionDialog.xaml">
@@ -107,8 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ModelGenerator.cs" />
-    <Compile Include="Models\OrderModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

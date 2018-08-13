@@ -1,21 +1,35 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mvvmJonasTest="clr-namespace:MvvmJonasTest">
+                    xmlns:mvvmJonasTest="clr-namespace:MvvmJonasTest"
+                    xmlns:models="clr-namespace:MvvmJonasTest.Models"
+                    xmlns:viewModels="clr-namespace:MvvmJonasTest.ViewModels">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Main.Base.xaml" />
         <ResourceDictionary Source="Main.Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="TemplateUser">
+    <DataTemplate x:Key="TemplateUser"
+                  DataType="{x:Type viewModels:UserViewModel}">
+
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding UserName}" />
+            <TextBlock Text="{Binding Name, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="TemplateProduct">
+    <DataTemplate x:Key="TemplateProduct"
+                  DataType="{x:Type mvvmJonasTest:ProductViewModel}">
+
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding ProductName}" />
+            <TextBlock Text="{Binding Name, Mode=OneWay}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="TemplateOrder"
+                  DataType="{x:Type viewModels:OrderViewModel}">
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" />
         </StackPanel>
     </DataTemplate>
 
@@ -31,14 +45,25 @@
 
         <Setter Property="Margin"
                 Value="10,10,10,0" />
+    </Style>
+
+    <Style x:Key="TextblockMainWindowBase"
+           TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource TextblockBase}">
 
         <Setter Property="VerticalAlignment"
                 Value="Top" />
+
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+
+        <Setter Property="Margin"
+                Value="10,10,10,0" />
     </Style>
 
-    <Style x:Key="TextboxPrice"
-           TargetType="{x:Type TextBox}"
-           BasedOn="{StaticResource TextboxMainWindowBase}">
+    <Style x:Key="TextblockPrice"
+           TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource TextblockMainWindowBase}">
 
         <Setter Property="Foreground"
                 Value="{StaticResource BrushBlue}" />
@@ -82,6 +107,16 @@
 
         <Setter Property="ItemTemplate"
                 Value="{StaticResource TemplateProduct}" />
+
+        <Setter Property="Margin"
+                Value="20" />
+    </Style>
+
+    <Style x:Key="ListboxOrder"
+           TargetType="{x:Type ListBox}">
+
+        <Setter Property="ItemTemplate"
+                Value="{StaticResource TemplateOrder}" />
 
         <Setter Property="Margin"
                 Value="20" />

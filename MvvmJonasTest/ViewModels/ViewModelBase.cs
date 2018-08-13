@@ -9,6 +9,8 @@ namespace MvvmJonasTest.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public virtual string Name { get; set; }
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

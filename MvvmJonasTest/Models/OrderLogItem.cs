@@ -2,7 +2,7 @@
 
 namespace MvvmJonasTest.Models
 {
-    public class OrderLogItem : OrderModel
+    public class OrderLogItem : Order
     {
         public Guid UserId { get; set; }
         public string UserName { get; set; }

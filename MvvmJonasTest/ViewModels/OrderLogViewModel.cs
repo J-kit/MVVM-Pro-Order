@@ -10,7 +10,7 @@ namespace MvvmJonasTest.ViewModels
     {
         public OrderLogViewModel()
         {
-            OrderLogItems = new ObservableCollection<OrderLogItem>(ModelGenerator.GetOrderLogItems());
+            //OrderLogItems = new ObservableCollection<OrderLogItem>(ModelGenerator.GetOrderLogItems());
         }
 
         public ObservableCollection<OrderLogItem> OrderLogItems { get; private set; }

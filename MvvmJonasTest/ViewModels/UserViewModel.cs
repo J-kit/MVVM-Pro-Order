@@ -9,20 +9,15 @@ namespace MvvmJonasTest.ViewModels
 {
     public class UserViewModel : ViewModelBase
     {
-        private OrderModelViewModel _currentOrder;
-
-        public UserViewModel([NotNull]UserModel model)
+        public UserViewModel([NotNull]User model)
         {
             UserModel = model ?? throw new ArgumentException("Model can't be null");
-            Orders = new ObservableCollection<OrderModelViewModel>(model.Orders.Select(x => new OrderModelViewModel(x)));
-            _currentOrder = Orders.FirstOrDefault();
+            Orders = new ObservableCollection<OrderViewModel>(model.Orders.OrderBy(x => x.OrderDate).Select(x => new OrderViewModel(x)));
         }
 
-        public UserModel UserModel { get; private set; }
+        public User UserModel { get; private set; }
 
-
-
-        public string UserName => UserModel.Name;
+        public override string Name => UserModel.Name;
 
         public string PersonalText
         {
@@ -35,17 +30,6 @@ namespace MvvmJonasTest.ViewModels
             }
         }
 
-        public ObservableCollection<OrderModelViewModel> Orders { get; private set; }
-
-        public OrderModelViewModel CurrentOrder
-        {
-            get => _currentOrder;
-            set
-            {
-                if (Equals(value, _currentOrder)) return;
-                _currentOrder = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<OrderViewModel> Orders { get; private set; }
     }
 }

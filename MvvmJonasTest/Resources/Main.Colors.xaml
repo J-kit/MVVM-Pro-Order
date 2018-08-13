@@ -2,13 +2,24 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MvvmJonasTest.Resources">
 
-    <Color x:Key="SpecialRed" R="255"/>
-    <Color x:Key="SpecialBlue" B="255"/>
-    <Color x:Key="SpecialGreen" G="255"/>
+    <Color x:Key="SpecialRed"
+           R="255"
+           A="255" />
 
+    <Color x:Key="SpecialBlue"
+           B="255"
+           A="255" />
 
-    <SolidColorBrush x:Key="BrushRed" Color="{StaticResource SpecialRed}"/>
-    <SolidColorBrush x:Key="BrushBlue" Color="{StaticResource SpecialRed}"/>
-    <SolidColorBrush x:Key="BrushGreen" Color="{StaticResource SpecialRed}"/>
+    <Color x:Key="SpecialGreen"
+           G="255"
+           A="255" />
 
+    <SolidColorBrush x:Key="BrushRed"
+                     Color="{StaticResource SpecialRed}" />
+
+    <SolidColorBrush x:Key="BrushBlue"
+                     Color="{StaticResource SpecialRed}" />
+
+    <SolidColorBrush x:Key="BrushGreen"
+                     Color="{StaticResource SpecialRed}" />
 </ResourceDictionary>
