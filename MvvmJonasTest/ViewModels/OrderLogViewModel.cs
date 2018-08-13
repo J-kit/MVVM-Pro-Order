@@ -9,6 +9,9 @@ namespace MvvmJonasTest.ViewModels
 {
     public class OrderLogFilterViewModel : ViewModelBase
     {
+        private const int SelectedUserIndex = 0;
+        private const int SelectedProductIndex = 1;
+
         private ModelBase _selectedUser;
         private ModelBase _selectedProducts;
 
@@ -41,27 +44,53 @@ namespace MvvmJonasTest.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public IEnumerable<OrderLogItem> FilterItems(IEnumerable<OrderLogItem> items)
+        {
+            var logItems = items;
+
+            if (SelectedUser != null)
+            {
+                var suid = SelectedUser.Id;
+                logItems = logItems.Where(x => x.UserId == suid);
+            }
+
+            if (SelectedProduct != null)
+            {
+                var spid = SelectedProduct.Id;
+                logItems = logItems.Where(x => x.ProductId == spid);
+            }
+
+            return logItems;
+        }
     }
 
     public class OrderLogViewModel : ViewModelBase
     {
+        private IEnumerable<OrderLogItem> _orderModels;
+
         public OrderLogViewModel()
         {
             LogFilter = new OrderLogFilterViewModel();
 
-            var orderModels = ModelGenerator.GetOrderLogItems()
-                .Select(x => new OrderLogItemViewModel(x, LogFilter))
-                .ToList();
+            _orderModels = ModelGenerator.GetOrderLogItems();
 
             var userModels = ModelGenerator.GetUserModels();
             var productModels = ModelGenerator.GetProducts();
 
-            OrderLogItems = new ObservableCollection<OrderLogItemViewModel>(orderModels);
+            // OrderLogItems = _orderModels.Select(x => new OrderLogItemViewModel(x, LogFilter)).ToList();
             Users = new ObservableCollection<ModelBase>(userModels);
             Products = new ObservableCollection<ModelBase>(productModels);
+
+            LogFilter.PropertyChanged += LogFilter_PropertyChanged;
         }
 
-        public ObservableCollection<OrderLogItemViewModel> OrderLogItems { get; private set; }
+        private void LogFilter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(OrderLogItems));
+        }
+
+        public IEnumerable<OrderLogItemViewModel> OrderLogItems => LogFilter.FilterItems(_orderModels).Select(x => new OrderLogItemViewModel(x, LogFilter));
         public IReadOnlyList<ModelBase> Users { get; private set; }
         public IReadOnlyList<ModelBase> Products { get; private set; }
 
