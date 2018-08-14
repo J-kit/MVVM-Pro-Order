@@ -1,11 +1,10 @@
-﻿using MvvmJonasTest.Models;
-
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
+using MvvmJonasTest.Models;
 
-namespace MvvmJonasTest.ViewModels
+namespace MvvmJonasTest.ViewModels.UserAdministration
 {
     public class UserAdministrationViewModel : ViewModelBase
     {

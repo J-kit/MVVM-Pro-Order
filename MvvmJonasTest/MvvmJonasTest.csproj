@@ -68,15 +68,21 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="UserControls\AbstractExpenditureStatistics.cs" />
+    <Compile Include="UserControls\UserGraph.xaml.cs">
+      <DependentUpon>UserGraph.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\RandomHelper.cs" />
+    <Compile Include="ViewModels\CustomerOrderOverView\CustomerOrderOverViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\OrderItemViewModel.cs" />
-    <Compile Include="ViewModels\OrderLogItemViewModel.cs" />
-    <Compile Include="ViewModels\OrderLogViewModel.cs" />
+    <Compile Include="ViewModels\UserAdministration\OrderItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderLog\OrderLogFilterViewModel.cs" />
+    <Compile Include="ViewModels\OrderLog\OrderLogItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderLog\OrderLogViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
-    <Compile Include="ViewModels\UserAdministrationViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\UserAdministration\UserAdministrationViewModel.cs" />
+    <Compile Include="ViewModels\UserAdministration\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="ExceptionDialog.xaml">
       <SubType>Designer</SubType>
@@ -107,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,5 +151,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

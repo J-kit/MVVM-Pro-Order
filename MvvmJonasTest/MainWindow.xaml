@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MvvmJonasTest.ViewModels"
+        xmlns:userControls="clr-namespace:MvvmJonasTest.UserControls"
         mc:Ignorable="d"
         Title="ProOrder 5000k"
         Height="450"
-        Width="800"
+        Width="1000"
         d:DataContext="{d:DesignInstance Type={x:Type local:MainWindowViewModel}}">
 
     <Window.DataContext>
@@ -22,177 +23,248 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <TabControl>
-        <TabItem Header="Userverwaltung"
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+
+            <MenuItem Header="Sprache" />
+            <MenuItem Header="Design" />
+        </Menu>
+
+        <TabControl>
+            <TabItem Header="Userverwaltung"
                  DataContext="{Binding UserAdministration}">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <ListBox Grid.Column="0"
+                    <ListBox Grid.Column="0"
                          ItemsSource="{Binding Users, Mode=OneWay}"
                          SelectedItem="{Binding SelectedUser}"
                          Style="{StaticResource ListboxUser}" />
 
-                <ListBox Grid.Column="1"
+                    <ListBox Grid.Column="1"
                          ItemsSource="{Binding SelectedUser.Orders, Mode=OneWay}"
                          SelectedItem="{Binding SelectedOrder}"
                          Style="{StaticResource ListboxOrder}" />
 
-                <ListBox Grid.Column="2"
+                    <ListBox Grid.Column="2"
                          ItemsSource="{Binding SelectedOrder.OrderItems, Mode=OneWay}"
                          SelectedItem="{Binding SelectedOrderItem}"
                          Style="{StaticResource ListboxProduct}" />
 
-                <StackPanel Grid.Column="3">
-                    <TextBlock Text="{Binding SelectedOrderItem.Name., Mode=OneWay}"
+                    <StackPanel Grid.Column="3">
+                        <TextBlock Text="{Binding SelectedOrderItem.Name., Mode=OneWay}"
                              Style="{StaticResource TextblockMainWindowBase}"
                              MinHeight= "23" />
 
-                    <TextBox Text="{Binding SelectedOrder.Comment}"
+                        <TextBox Text="{Binding SelectedOrder.Comment}"
                              Style="{StaticResource TextboxMainWindowBase}"
                              Height= "200" />
 
-                    <TextBlock Text="{Binding SelectedOrder.Price,StringFormat={}{0:c},ConverterCulture=De-AT, Mode=OneWay}"
+                        <TextBlock Text="{Binding SelectedOrder.Price,StringFormat={}{0:c},ConverterCulture=De-AT, Mode=OneWay}"
                              Style="{StaticResource TextblockPrice}" />
 
-                    <Button Content="Do Something"
+                        <Button Content="Do Something"
                             Style="{StaticResource ButtonDoSomething}"
                             Command="{Binding DoSomethingCommand}" />
-                </StackPanel>
-            </Grid>
-        </TabItem>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
 
-        <TabItem Header="Bestellungslog"
+            <TabItem Header="Bestellungslog"
                  DataContext="{Binding OrderLog}">
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <GroupBox Grid.Row="0"
+                    <GroupBox Grid.Row="0"
                           Margin="3">
 
-                    <!--Filter-->
+                        <!--Filter-->
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" MinWidth="100" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" MinWidth="100" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <!--First Row-->
+                            <!--First Row-->
 
-                        <TextBlock Grid.Column="0"
+                            <TextBlock Grid.Column="0"
                                    Grid.Row="0"
-                                   Text="User" />
+                                   Text="User"
+                                   Style="{StaticResource TextblockFilter}" />
 
-                        <ComboBox Grid.Column="1"
+                            <!--ItemsSource="{Binding Users}"-->
+
+                            <ComboBox Grid.Column="1"
                                   Grid.Row="0"
                                   ItemsSource="{Binding Users}"
                                   SelectedItem="{Binding LogFilter.SelectedUser}"
                                   Style="{StaticResource ComboboxSelection}" />
 
-                        <TextBlock Grid.Column="2"
-                               Grid.Row="0"
-                               Text="Preis von" />
+                            <TextBlock Grid.Column="2"
+                                   Grid.Row="0"
+                                   Text="Preis von"
+                                   Style="{StaticResource TextblockFilter}" />
 
-                        <TextBox Grid.Column="3"
-                             Grid.Row="0" />
+                            <TextBox Grid.Column="3"
+                                 Grid.Row="0"
+                                 Text="{Binding LogFilter.PriceSelectionMin, ConverterCulture='de-AT',StringFormat={}{0:c}}"
+                                 Style="{StaticResource TextboxFilter}" />
 
-                        <TextBlock Grid.Column="4"
-                               Grid.Row="0"
-                               Text="bis" />
+                            <TextBlock Grid.Column="4"
+                                   Grid.Row="0"
+                                   Text="bis"
+                                   Style="{StaticResource TextblockFilter}" />
 
-                        <TextBox Grid.Column="5"
-                             Grid.Row="0" />
+                            <TextBox Grid.Column="5"
+                                 Grid.Row="0"
+                                 Text="{Binding LogFilter.PriceSelectionMax, ConverterCulture='de-AT',StringFormat={}{0:c}}"
+                                 Style="{StaticResource TextboxFilter}" />
 
-                        <!--Second Row-->
+                            <!--Second Row-->
 
-                        <TextBlock Grid.Column="0"
-                               Grid.Row="1"
-                               Text="Produkt" />
+                            <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   Text="Produkt"
+                                   Style="{StaticResource TextblockFilter}" />
 
-                        <ComboBox Grid.Column="1"
+                            <ComboBox Grid.Column="1"
                                   Grid.Row="1"
                                   ItemsSource="{Binding Products}"
                                   SelectedItem="{Binding LogFilter.SelectedProduct}"
                                   Style="{StaticResource ComboboxSelection}" />
 
-                        <TextBlock Grid.Column="2"
-                               Grid.Row="1"
-                               Text="Datum von" />
+                            <TextBlock Grid.Column="2"
+                                   Grid.Row="1"
+                                   Text="Datum von"
+                                   Style="{StaticResource TextblockFilter}" />
 
-                        <DatePicker Grid.Column="3"
-                                Grid.Row="1" />
+                            <DatePicker Grid.Column="3"
+                                    Grid.Row="1"
+                                    SelectedDate="{Binding LogFilter.DateTimeFrom}"
+                                    DisplayDateStart="{Binding LogFilter.MinDateFrom,Mode=OneWay}"
+                                    DisplayDateEnd="{Binding LogFilter.MaxDateFrom ,Mode=OneWay}"
+                                    Style="{StaticResource DatePickerFilter}" />
 
-                        <TextBlock Grid.Column="4"
-                               Grid.Row="1"
-                               Text="bis" />
+                            <TextBlock Grid.Column="4"
+                                   Grid.Row="1"
+                                   Text="bis"
+                                   Style="{StaticResource TextblockFilter}" />
 
-                        <DatePicker Grid.Column="5"
-                                Grid.Row="1" />
-                    </Grid>
-                </GroupBox>
+                            <DatePicker Grid.Column="5"
+                                    Grid.Row="1"
+                                    SelectedDate="{Binding LogFilter.DateTimeTo}"
+                                    DisplayDateStart="{Binding LogFilter.MinDateTo,Mode=OneWay}"
+                                    DisplayDateEnd="{Binding LogFilter.MaxDate,Mode=OneWay}"
+                                    Style="{StaticResource DatePickerFilter}" />
+                        </Grid>
+                    </GroupBox>
 
-                <!--Content Daten-->
+                    <!--Content Daten-->
 
-                <DataGrid Grid.Row="1"
+                    <DataGrid Grid.Row="1"
                           ItemsSource="{Binding OrderLogItems, Mode=OneWay}"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
                           EnableRowVirtualization="True">
-                    <DataGrid.RowStyle>
-                        <Style TargetType="{x:Type DataGridRow}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsVisible}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.RowStyle>
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Bestelldatum"
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Bestelldatum"
                                             Binding="{Binding OrderDateTime, StringFormat= {}{0:d}, ConverterCulture='de-AT', Mode=OneWay}" />
 
-                        <DataGridTextColumn Header="Usernane"
+                            <DataGridTextColumn Header="Usernane"
                                             Binding="{Binding UserName, Mode=OneWay}" />
 
-                        <DataGridTextColumn Header="Produktname"
+                            <DataGridTextColumn Header="Produktname"
                                             Binding="{Binding ProductName, Mode=OneWay}" />
 
-                        <DataGridTextColumn Header="Preis"
+                            <DataGridTextColumn Header="Preis"
                                             Binding="{Binding ProductPrice, StringFormat= {}{0:c}, ConverterCulture='de-AT', Mode=OneWay}"
                                             ElementStyle="{StaticResource TextColumnNumber}" />
 
-                        <DataGridTextColumn Header="Menge"
+                            <DataGridTextColumn Header="Menge"
                                             Binding="{Binding Amount, Mode=OneWay}"
                                             ElementStyle="{StaticResource TextColumnNumber}" />
 
-                        <DataGridTextColumn Header="Anmerkung"
+                            <DataGridTextColumn Header="Anmerkung"
                                             Binding="{Binding Comment, Mode=OneWay}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
-    </TabControl>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Bestellungsübersicht"
+                     IsSelected="True"
+                     DataContext="{Binding CustomerOrderOverView}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0"
+                          Margin="3">
+
+                        <!--Filter-->
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--First Row-->
+
+                            <TextBlock Grid.Column="0"
+                                   Grid.Row="0"
+                                   Text="User"
+                                   Style="{StaticResource TextblockFilter}" />
+
+                            <ListBox Grid.Column="1"
+                                     Grid.Row="0"
+                                     ItemsSource="{Binding Users}"
+                                     SelectedItem="{Binding SelectedUsers}"
+                                     SelectionMode="Extended"
+                                     DisplayMemberPath="Name"
+                                     MinWidth="100"
+                                     MaxHeight="40" />
+                        </Grid>
+                    </GroupBox>
+
+                    <DockPanel Grid.Column="0"
+                               Grid.Row="1">
+
+                        <userControls:UserGraph DockPanel.Dock="Left"
+                                                ItemSource="{Binding Users,Mode=OneWay}"
+                                                HorizontalAlignment="Left" />
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>

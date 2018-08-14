@@ -43,7 +43,7 @@ namespace MvvmJonasTest.Models
                         Id = Guid.NewGuid(),
                         Name = x,
                         PersonalText = RandomHelper.RandomString(50),
-                        Orders = Enumerable.Range(10, 100).Select(m => GenerateOrderModel(_rnd.Next(m))).ToList(),
+                        Orders = Enumerable.Range(1, 5).Select(m => GenerateOrderModel(_rnd.Next(m))).ToList(),
                     })
                     .ToList();
 
@@ -131,7 +131,7 @@ namespace MvvmJonasTest.Models
                         .Select(x => new Product
                         {
                             Name = x,
-                            Price = _rnd.Next(15),
+                            Price = _rnd.NextDouble() * 100,
                             ProductDescription = RandomHelper.RandomString(30),
                         })
                         .ToArray();

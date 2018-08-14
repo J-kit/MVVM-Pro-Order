@@ -2,6 +2,7 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
+using MvvmJonasTest.ViewModels.UserAdministration;
 
 namespace MvvmJonasTest.ViewModels
 {
@@ -26,7 +27,11 @@ namespace MvvmJonasTest.ViewModels
             get => _model.Comment;
             set
             {
-                if (value == _model.Comment) return;
+                if (value == _model.Comment)
+                {
+                    return;
+                }
+
                 _model.Comment = value;
                 OnPropertyChanged();
             }

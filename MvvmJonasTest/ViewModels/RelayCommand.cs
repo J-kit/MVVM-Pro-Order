@@ -18,18 +18,8 @@ namespace MvvmJonasTest.ViewModels
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            if (execute == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
-
-            if (canExecute == null)
-            {
-                throw new ArgumentNullException("canExecute");
-            }
-
-            this.execute = execute;
-            this.canExecute = canExecute;
+            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            this.canExecute = canExecute ?? throw new ArgumentNullException(nameof(canExecute));
         }
 
         public event EventHandler CanExecuteChanged
@@ -61,11 +51,7 @@ namespace MvvmJonasTest.ViewModels
         public void OnCanExecuteChanged()
         {
             EventHandler handler = CanExecuteChangedInternal;
-            if (handler != null)
-            {
-                //DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
-                handler.Invoke(this, EventArgs.Empty);
-            }
+            handler?.Invoke(this, EventArgs.Empty);
         }
 
         public void Destroy()

@@ -1,11 +1,10 @@
-﻿using MvvmJonasTest.Annotations;
-using MvvmJonasTest.Models;
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MvvmJonasTest.Annotations;
+using MvvmJonasTest.Models;
 
-namespace MvvmJonasTest.ViewModels
+namespace MvvmJonasTest.ViewModels.UserAdministration
 {
     public class UserViewModel : ViewModelBase
     {

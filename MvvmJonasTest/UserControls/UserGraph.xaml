@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MvvmJonasTest.UserControls.UserGraph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MvvmJonasTest.UserControls"
+             mc:Ignorable="d"
+             d:DesignWidth="450"
+             d:DesignHeight="200">
+
+    <Canvas x:Name="UserCanvas"
+            Width="450"
+            Height="200">
+
+        <!--<Polyline Points="0,0 0,200"
+                  Stroke="Blue"
+                  StrokeThickness="5" />-->
+
+        <!--<Line X1="30" Y1="0"
+              X2="30" Y2="200"
+              Stroke="Red"
+              StrokeThickness="5" />
+
+        <Line X1="0" Y1="150"
+              X2="450" Y2="150"
+              Stroke="Red"
+              StrokeThickness="5" />-->
+    </Canvas>
+</UserControl>

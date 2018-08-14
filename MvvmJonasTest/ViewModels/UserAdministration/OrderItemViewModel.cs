@@ -1,6 +1,6 @@
 ﻿using MvvmJonasTest.Models;
 
-namespace MvvmJonasTest.ViewModels
+namespace MvvmJonasTest.ViewModels.UserAdministration
 {
     public class OrderItemViewModel : ViewModelBase
     {

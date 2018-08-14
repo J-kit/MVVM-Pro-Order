@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mvvmJonasTest="clr-namespace:MvvmJonasTest"
                     xmlns:models="clr-namespace:MvvmJonasTest.Models"
-                    xmlns:viewModels="clr-namespace:MvvmJonasTest.ViewModels">
+                    xmlns:viewModels="clr-namespace:MvvmJonasTest.ViewModels"
+                    xmlns:userAdministration="clr-namespace:MvvmJonasTest.ViewModels.UserAdministration">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Main.Base.xaml" />
@@ -10,7 +11,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="TemplateUser"
-                  DataType="{x:Type viewModels:UserViewModel}">
+                  DataType="{x:Type userAdministration:UserViewModel}">
 
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding Name, Mode=OneWay}" />
@@ -142,42 +143,35 @@
 
         <Setter Property="ItemTemplate"
                 Value="{StaticResource TemplateComboboxSelection}" />
+
+        <Setter Property="Margin"
+                Value="10,5" />
+
+        <Setter Property="MinWidth"
+                Value="100" />
     </Style>
 
-    <DataTemplate x:Key="Userverwaltung">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="209*" />
-                <ColumnDefinition Width="209*" />
-                <ColumnDefinition Width="209*" />
-            </Grid.ColumnDefinitions>
+    <Style x:Key="TextblockFilter"
+           TargetType="{x:Type TextBlock}">
 
-            <ListBox Grid.Column="0"
-                     ItemsSource="{Binding Users, Mode=OneWay}"
-                     SelectedItem="{Binding SelectedUser}"
-                     Style="{StaticResource ListboxUser}" />
+        <Setter Property="Margin"
+                Value="5" />
 
-            <ListBox Grid.Column="1"
-                     ItemsSource="{Binding SelectedUser.Orders, Mode=OneWay}"
-                     SelectedItem="{Binding SelectedUser.CurrentOrder}"
-                     Style="{StaticResource ListboxProduct}" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+    </Style>
 
-            <StackPanel Grid.Column="2">
-                <TextBox Text="{Binding SelectedUser.CurrentOrder.ProductName, Mode=OneWay}"
-                         Style="{StaticResource TextboxMainWindowBase}"
-                         Height= "23" />
+    <Style x:Key="TextboxFilter"
+           TargetType="{x:Type TextBox}">
 
-                <TextBox Text="{Binding SelectedUser.CurrentOrder.Anmerkungen}"
-                         Style="{StaticResource TextboxMainWindowBase}"
-                         Height= "200" />
+        <Setter Property="Margin"
+                Value="5" />
+    </Style>
 
-                <TextBox Text="{Binding SelectedUser.CurrentOrder.Price, StringFormat={}{0} €}"
-                         Style="{StaticResource TextboxPrice}" />
+    <Style x:Key="DatePickerFilter"
+           TargetType="{x:Type DatePicker}">
 
-                <Button Content="Do Something"
-                        Style="{StaticResource ButtonDoSomething}"
-                        Command="{Binding DoSomethingCommand}" />
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
+        <Setter Property="Margin"
+                Value="5" />
+    </Style>
 </ResourceDictionary>

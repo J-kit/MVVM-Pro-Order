@@ -14,12 +14,10 @@ namespace MvvmJonasTest
             //   AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             //  Dispatcher.CurrentDispatcher.UnhandledException += CurrentDispatcher_UnhandledException;
 
-
-
             InitializeComponent();
 
             //var data = ModelGenerator.GenerateUserModels();
-            //DataContext = 
+            //DataContext =
         }
 
         private void CurrentDispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -29,7 +27,6 @@ namespace MvvmJonasTest
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-
             //   new ExceptionDialog(e.ExceptionObject.ToString()).ShowDialog();
 
             //try
